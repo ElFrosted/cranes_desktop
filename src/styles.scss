@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+    --verde: #1a7f4b;
+    --verde-claro: #22a862;
+    --verde-ultra: #e6f5ee;
+    --azul: #0f3460;
+    --azul-medio: #1a4d8a;
+    --azul-claro: #e8f0fb;
+    --rojo: #c0392b;
+    --rojo-claro: #e74c3c;
+    --rojo-ultra: #fdf2f2;
+    --amarillo: #f59e0b;
+    --amarillo-bg: #fffbeb;
+    --blanco: #fff;
+    --gris-0: #f8fafc;
+    --gris-1: #f4f6f9;
+    --gris-2: #e2e8f0;
+    --gris-3: #94a3b8;
+    --texto: #1e293b;
+    --texto-suave: #64748b;
+    --sombra: 0 4px 24px rgba(15, 52, 96, 0.1);
+    --radio: 14px;
+    --brand-green: #22a862;
+    --brand-blue: #1a4d8a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(135deg, #0f3460, #1a4d8a);
+    min-height: 100vh;
+    padding: 20px 16px 48px;
+    color: var(--texto);
+}
