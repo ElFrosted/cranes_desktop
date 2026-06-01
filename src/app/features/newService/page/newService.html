@@ -1,0 +1,24 @@
+<div class="panel active" id="panel-nuevo">
+    <div class="app-grid">
+        <div class="panel-izquierdo">
+            <app-card [title]="'tipo de servicio'">
+                <div class="tsv-bar" id="tsv-bar">
+                    <div class="tsv-btn active" onclick="selTipoSvc(this, 'Grúa')">🚛 Grúa</div>
+                    <div class="tsv-btn" onclick="selTipoSvc(this, 'Desplazamiento')">
+                        🗺️ Desplazamiento
+                    </div>
+                    <div class="tsv-btn" onclick="selTipoSvc(this, 'Carro Taller')">
+                        🔧 Carro Taller
+                    </div>
+                    <div class="tsv-btn" onclick="selTipoSvc(this, 'Conductor Elegido')">
+                        🧑‍✈️ Conductor Elegido
+                    </div>
+                    <div class="tsv-btn" onclick="selTipoSvc(this, 'Mensajería')">
+                        📦 Mensajería
+                    </div>
+                    <div class="tsv-btn" onclick="selTipoSvc(this, 'Hogar')">🏠 Hogar</div>
+                </div>
+            </app-card>
+        </div>
+    </div>
+</div>

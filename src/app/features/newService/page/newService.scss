@@ -1,0 +1,82 @@
+.panel {
+    display: none;
+}
+
+.panel.active {
+    display: block;
+}
+
+.app-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 20px;
+    max-width: 1160px;
+    margin: 0 auto;
+    align-items: start;
+}
+@media (max-width: 900px) {
+    .app-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media print {
+    body {
+        background: #fff;
+        padding: 0;
+    }
+    .tabs,
+    .panel-izquierdo,
+    .cot-card {
+        display: none !important;
+    }
+    .app-grid {
+        grid-template-columns: 1fr;
+    }
+    .panel-resumen {
+        position: static;
+    }
+    .btn-primary,
+    .btn-sec,
+    .btn-excel,
+    .val-msg {
+        display: none !important;
+    }
+    .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    .header-inner {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
+
+.tsv-bar {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+.tsv-btn {
+    padding: 8px 14px;
+    border: 1.5px solid var(--gris-2);
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--gris-1);
+    color: var(--texto-suave);
+    white-space: nowrap;
+
+    &:hover {
+        border-color: var(--brand-blue);
+        color: var(--brand-blue);
+    }
+
+    &.active {
+        background: var(--azul);
+        border-color: var(--azul);
+        color: #fff;
+    }
+}
