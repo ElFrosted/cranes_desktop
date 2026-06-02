@@ -19,6 +19,160 @@
                     <div class="tsv-btn" onclick="selTipoSvc(this, 'Hogar')">🏠 Hogar</div>
                 </div>
             </app-card>
+            <app-card [title]="'información del servicio / asegurado'">
+                <div class="grid-2">
+                    <input type="hidden" id="cli-servicio" />
+                    <div class="field">
+                        <label>N° Registro (auto)</label
+                        ><input
+                            type="text"
+                            id="cot-num"
+                            readonly
+                            style="background: #f0f4f8; color: var(--texto-suave)"
+                        />
+                    </div>
+                    <div class="field">
+                        <label>Nombre Asegurado <span class="req">*</span></label
+                        ><input type="text" id="cli-nombre" placeholder="Ej: Sofía Marzola" />
+                    </div>
+                    <div class="field">
+                        <label>Placa del Vehículo <span class="req">*</span></label
+                        ><input type="text" id="cli-placa" placeholder="Ej: JFT 123" />
+                    </div>
+                    <div class="field">
+                        <label>Teléfono / Celular <span class="req">*</span></label>
+                        <div class="custom-select-wrap">
+                            <select id="cli-telefono-sel" onchange="onTelefonoChange()">
+                                <option value="">— Selecciona —</option>
+                                <option value="6012540243">6012540243</option>
+                                <option value="OTRO">OTRO (pegar número)</option>
+                            </select>
+                        </div>
+                        <input
+                            type="text"
+                            id="cli-telefono"
+                            class="otro-input"
+                            placeholder="Pega o digita el teléfono"
+                            style="margin-top: 6px; display: none"
+                        />
+                    </div>
+                    <div class="field">
+                        <label>N° Autorización <span class="req">*</span></label>
+                        <input
+                            type="text"
+                            id="cli-autorizacion"
+                            placeholder="Ej: 26120165"
+                            oninput="checkDupAutorizacion()"
+                        />
+                        <div class="dup-warn" id="dup-auth-warn"></div>
+                    </div>
+                    <div class="field">
+                        <label>Fecha del Servicio <span class="req">*</span></label>
+                        <div class="date-field-wrapper">
+                            <div class="date-display" id="fecha-display" onclick="toggleCalendar()">
+                                <span id="fecha-text">Seleccionar fecha</span>
+                                <span>📅</span>
+                            </div>
+                            <input type="hidden" id="cli-fecha" />
+                            <div class="calendar-popup" id="calendar-popup">
+                                <div class="cal-header">
+                                    <button class="cal-nav" onclick="calNav(-1)">‹</button>
+                                    <span class="cal-month-lbl" id="cal-month-lbl"></span>
+                                    <button class="cal-nav" onclick="calNav(1)">›</button>
+                                </div>
+                                <div class="cal-grid" id="cal-grid"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Hora del Servicio <span class="req">*</span></label>
+                        <input
+                            type="text"
+                            id="cli-hora"
+                            placeholder="Ej: 14:30 → se convierte a AM/PM"
+                            oninput="formatHora(this)"
+                            maxlength="5"
+                        />
+                        <div class="time-display-row" id="hora-ampm-row" style="display: none">
+                            <span style="font-size: 12px; color: var(--texto-suave)">→</span>
+                            <span
+                                id="hora-12h"
+                                style="font-size: 13px; font-weight: 600; color: var(--texto)"
+                            ></span>
+                            <span class="ampm-badge" id="hora-ampm-badge">AM</span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Técnico / Conductor <span class="req">*</span></label>
+                        <div class="custom-select-wrap">
+                            <select id="cli-tecnico-sel" onchange="onTecnicoChange()">
+                                <option value="">— Selecciona conductor —</option>
+                                <option value="DIEGO CAYAPU">DIEGO CAYAPU</option>
+                                <option value="GERMAN ROSERO">GERMAN ROSERO</option>
+                                <option value="ANDRES MORENO">ANDRES MORENO</option>
+                                <option value="ANDRES JIMENEZ">ANDRES JIMENEZ</option>
+                                <option value="BRYAN ECHEVERRY">BRYAN ECHEVERRY</option>
+                                <option value="JHON F">JHON F</option>
+                                <option value="JUAN CARLOS ARCE">JUAN CARLOS ARCE</option>
+                                <option value="JONATHAN GAITAN">JONATHAN GAITAN</option>
+                                <option value="JULIO RESTREPO">JULIO RESTREPO</option>
+                                <option value="NESTOR TRUJILLO">NESTOR TRUJILLO</option>
+                                <option value="JORGE GONZALES">JORGE GONZALES</option>
+                                <option value="JOSE MINOTTA">JOSE MINOTTA</option>
+                                <option value="CAMILO DIAZ">CAMILO DIAZ</option>
+                                <option value="LILIAM ROLDAN">LILIAM ROLDAN</option>
+                                <option value="YEFERSON RIOS">YEFERSON RIOS</option>
+                                <option value="JHON SANCHEZ">JHON SANCHEZ</option>
+                                <option value="DANIEL ORDOÑEZ">DANIEL ORDOÑEZ</option>
+                                <option value="OTRO">OTRO</option>
+                            </select>
+                            <input type="hidden" id="cli-tecnico" value="" />
+                            <input
+                                type="text"
+                                id="cli-tecnico-otro"
+                                class="otro-input"
+                                placeholder="Digita el nombre del conductor"
+                            />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Placa de la Grúa</label>
+                        <div class="custom-select-wrap">
+                            <select id="cli-placa-grua-sel" onchange="onPlacaGruaChange()">
+                                <option value="">— Selecciona placa —</option>
+                                <option value="ETK920">ETK920</option>
+                                <option value="ETL375">ETL375</option>
+                                <option value="NQL626">NQL626</option>
+                                <option value="ETK452">ETK452</option>
+                                <option value="WPK608">WPK608</option>
+                                <option value="QIS471">QIS471</option>
+                                <option value="QOP488">QOP488</option>
+                                <option value="QOP509">QOP509</option>
+                                <option value="OTRO">OTRO</option>
+                            </select>
+                            <input type="hidden" id="cli-placa-grua" value="" />
+                            <input
+                                type="text"
+                                id="cli-placa-grua-otro"
+                                class="otro-input"
+                                placeholder="Digita la placa manualmente"
+                            />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Estado del Servicio</label>
+                        <select id="cli-estado">
+                            <option value="">— SELECCIONA —</option>
+                            <option value="FINALIZADO">✅ FINALIZADO</option>
+                            <option value="CANCELADO">❌ CANCELADO</option>
+                            <option value="FALLIDO">⚠️ FALLIDO</option>
+                            <option value="EN PROCESO">🔄 EN PROCESO</option>
+                            <option value="PROGRAMADO">📅 PROGRAMADO</option>
+                            <option value="EN CUSTODIA">🔒 EN CUSTODIA</option>
+                        </select>
+                    </div>
+                </div>
+            </app-card>
         </div>
     </div>
 </div>
