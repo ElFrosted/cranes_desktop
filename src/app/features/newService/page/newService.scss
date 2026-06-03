@@ -306,15 +306,254 @@ input[type='date'] {
     }
 }
 
-.maps-result{margin-top:10px;padding:12px;background:#e8f0fb;border:1.5px solid #bfdbfe;border-radius:10px;font-size:13px;}
-.maps-km-val{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:var(--azul);}
-.maps-km-sub{font-size:11px;color:var(--texto-suave);margin-top:3px;}
-.maps-loading{color:var(--texto-suave);font-size:13px;display:flex;align-items:center;gap:8px;}
-.maps-error{background:#fdf2f2;border-color:#fca5a5;color:var(--rojo);}
-.spinner{width:15px;height:15px;border:2px solid var(--gris-2);border-top-color:var(--azul);border-radius:50%;animation:spin .8s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg)}}
-.maps-copy-btn{margin-top:8px;padding:6px 12px;background:var(--azul);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;}
+.maps-result {
+    margin-top: 10px;
+    padding: 12px;
+    background: #e8f0fb;
+    border: 1.5px solid #bfdbfe;
+    border-radius: 10px;
+    font-size: 13px;
+}
+.maps-km-val {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--azul);
+}
+.maps-km-sub {
+    font-size: 11px;
+    color: var(--texto-suave);
+    margin-top: 3px;
+}
+.maps-loading {
+    color: var(--texto-suave);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.maps-error {
+    background: #fdf2f2;
+    border-color: #fca5a5;
+    color: var(--rojo);
+}
+.spinner {
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--gris-2);
+    border-top-color: var(--azul);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.maps-copy-btn {
+    margin-top: 8px;
+    padding: 6px 12px;
+    background: var(--azul);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
 
+.aseg-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.aseg-pill {
+    padding: 8px 16px;
+    border: 1.5px solid var(--gris-2);
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--gris-1);
+    color: var(--texto-suave);
+}
+.aseg-pill[data-aseg='BOLIVAR'].active {
+    background: var(--verde);
+    border-color: var(--verde);
+    color: #fff;
+}
+.aseg-pill[data-aseg='AXA'].active {
+    background: var(--rojo);
+    border-color: var(--rojo);
+    color: #fff;
+}
+.aseg-pill[data-aseg='IKE'].active {
+    background: var(--azul);
+    border-color: var(--azul);
+    color: #fff;
+}
+
+.tarifa-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+.tarifa-table th {
+    text-align: left;
+    padding: 6px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--gris-2);
+}
+.tarifa-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--gris-2);
+}
+.tarifa-table tr:last-child td {
+    border-bottom: none;
+}
+.tarifa-table tr:hover td {
+    background: var(--gris-1);
+}
+.tarifa-table .precio {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    color: var(--verde);
+}
+.tarifa-table .sel-row {
+    cursor: pointer;
+}
+.tarifa-table .sel-row.active td {
+    background: var(--verde-ultra);
+    color: var(--verde);
+}
+.tarifa-table .sel-row.active .precio {
+    color: var(--verde);
+}
+
+.km-block {
+    border: 1.5px solid var(--gris-2);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    background: var(--gris-0);
+}
+.km-block-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--texto-suave);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.km-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+.km-row .field {
+    flex: 1;
+    margin-bottom: 0;
+}
+.km-calc {
+    padding: 10px 13px;
+    background: var(--azul-claro);
+    border-radius: 10px;
+    font-weight: 700;
+    color: var(--azul);
+    font-size: 13px;
+    white-space: nowrap;
+    min-width: 90px;
+    text-align: center;
+}
+.km-info {
+    margin-top: 5px;
+    font-size: 11px;
+    color: var(--texto-suave);
+}
+
+.vt-row {
+    display: flex;
+    gap: 8px;
+}
+.vt-row select {
+    flex: 1;
+}
+.vt-otro {
+    display: none;
+    flex: 1;
+}
+.vt-otro.show {
+    display: block;
+}
+
+.fotos-upload-wrap {
+    border: 2px dashed var(--gris-2);
+    border-radius: 12px;
+    padding: 14px;
+    background: var(--gris-0);
+    transition: border 0.2s;
+}
+.fotos-upload-wrap:hover {
+    border-color: var(--azul-medio);
+}
+.fotos-upload-wrap input[type='file'] {
+    width: 100%;
+    padding: 8px;
+    background: #fff;
+    border: 1.5px solid var(--gris-2);
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.fotos-preview-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+.foto-thumb-wrap {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+}
+.foto-thumb-wrap img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid var(--gris-2);
+}
+.foto-thumb-del {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 18px;
+    height: 18px;
+    background: var(--rojo);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+.fotos-counter {
+    font-size: 11px;
+    color: var(--texto-suave);
+    margin-top: 6px;
+    font-weight: 600;
+}
 
 :host ::ng-deep app-card .card1 {
     animation-delay: 0.04s;
@@ -324,6 +563,30 @@ input[type='date'] {
     animation-delay: 0.07s;
 }
 
-:host ::ng-deep app-card .card2 {
+:host ::ng-deep app-card .card3 {
     animation-delay: 0.1s;
+}
+
+:host ::ng-deep app-card .card4 {
+    animation-delay: 0.13s;
+}
+
+:host ::ng-deep app-card .card5 {
+    animation-delay: 0.16s;
+}
+
+:host ::ng-deep app-card .card6 {
+    animation-delay: 0.19s;
+}
+
+:host ::ng-deep app-card .card7 {
+    animation-delay: 0.22s;
+}
+
+:host ::ng-deep app-card .card8 {
+    animation-delay: 0.25s;
+}
+
+:host ::ng-deep app-card .card9 {
+    animation-delay: 0.28s;
 }
