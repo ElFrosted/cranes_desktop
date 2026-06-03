@@ -1,7 +1,7 @@
 <div class="panel active" id="panel-nuevo">
     <div class="app-grid">
         <div class="panel-izquierdo">
-            <app-card [title]="'tipo de servicio'">
+            <app-card [title]="'tipo de servicio'" [className]="'card1'">
                 <div class="tsv-bar" id="tsv-bar">
                     <div class="tsv-btn active" onclick="selTipoSvc(this, 'Grúa')">🚛 Grúa</div>
                     <div class="tsv-btn" onclick="selTipoSvc(this, 'Desplazamiento')">
@@ -19,7 +19,7 @@
                     <div class="tsv-btn" onclick="selTipoSvc(this, 'Hogar')">🏠 Hogar</div>
                 </div>
             </app-card>
-            <app-card [title]="'información del servicio / asegurado'">
+            <app-card [title]="'información del servicio / asegurado'" [className]="'card2'">
                 <div class="grid-2">
                     <input type="hidden" id="cli-servicio" />
                     <div class="field">
@@ -170,6 +170,73 @@
                             <option value="PROGRAMADO">📅 PROGRAMADO</option>
                             <option value="EN CUSTODIA">🔒 EN CUSTODIA</option>
                         </select>
+                    </div>
+                </div>
+            </app-card>
+            <app-card [title]="'ruta del servicio'" [className]="'card3'">
+                <div class="field">
+                    <label>Origen <span class="req">*</span></label>
+                    <input
+                        type="text"
+                        id="cli-origen"
+                        placeholder="Ej: Jamundí, Valle del Cauca"
+                        oninput="resetMaps()"
+                    />
+                </div>
+                <div class="field">
+                    <label>Destino <span class="req">*</span></label>
+                    <input
+                        type="text"
+                        id="cli-destino"
+                        placeholder="Ej: Palmira, Valle del Cauca"
+                        oninput="resetMaps()"
+                    />
+                </div>
+                <button class="btn-maps" id="btn-maps" onclick="calcularMaps()">
+                    📍 Calcular km automáticamente (OSRM)
+                </button>
+                <div
+                    style="
+                        margin-top: 6px;
+                        padding: 8px 11px;
+                        background: #fffbeb;
+                        border: 1px solid #ffe082;
+                        border-radius: 8px;
+                        font-size: 11px;
+                        color: #92400e;
+                        line-height: 1.5;
+                    "
+                >
+                    ℹ️ <strong>¿Por qué difiere del km de Google Maps?</strong> Este cálculo suma
+                    <em>Cali→Origen + Origen→Destino</em> (el recorrido real de la grúa), mientras
+                    que Google Maps solo muestra el trayecto del cliente. La diferencia corresponde
+                    al desplazamiento desde la base hasta el punto de recogida.
+                </div>
+                <button
+                    class="btn-maps"
+                    id="btn-gmaps"
+                    onclick="abrirGoogleMaps()"
+                    style="background: #34a853; margin-top: 8px"
+                >
+                    🗺️ Ver ruta en Google Maps
+                </button>
+                <div id="maps-res" style="display: none" class="maps-result">
+                    <div class="maps-km-val" id="maps-km-val">— km</div>
+                    <div class="maps-km-sub" id="maps-km-sub"></div>
+                    <div style="margin-top: 6px; font-size: 11px; color: var(--texto-suave)">
+                        Ruta: <span id="maps-ruta" style="font-weight: 600"></span>
+                    </div>
+                    <div style="display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap">
+                        <button class="maps-copy-btn" onclick="copiarKmAlCampo()">
+                            ➕ Usar estos km en el formulario
+                        </button>
+                        <button
+                            class="maps-copy-btn"
+                            onclick="abrirGoogleMaps()"
+                            style="background: #34a853"
+                        >
+                            🗺️ Ver en Google Maps
+                        </button>
                     </div>
                 </div>
             </app-card>

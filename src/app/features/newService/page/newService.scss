@@ -279,3 +279,51 @@ input[type='date'] {
 .cal-day.empty {
     cursor: default;
 }
+
+.btn-maps {
+    padding: 10px 16px;
+    background: var(--azul);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    &:hover {
+        background: var(--azul-medio);
+    }
+    &:disabled {
+        background: var(--gris-3);
+        cursor: not-allowed;
+    }
+}
+
+.maps-result{margin-top:10px;padding:12px;background:#e8f0fb;border:1.5px solid #bfdbfe;border-radius:10px;font-size:13px;}
+.maps-km-val{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:var(--azul);}
+.maps-km-sub{font-size:11px;color:var(--texto-suave);margin-top:3px;}
+.maps-loading{color:var(--texto-suave);font-size:13px;display:flex;align-items:center;gap:8px;}
+.maps-error{background:#fdf2f2;border-color:#fca5a5;color:var(--rojo);}
+.spinner{width:15px;height:15px;border:2px solid var(--gris-2);border-top-color:var(--azul);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.maps-copy-btn{margin-top:8px;padding:6px 12px;background:var(--azul);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;}
+
+
+:host ::ng-deep app-card .card1 {
+    animation-delay: 0.04s;
+}
+
+:host ::ng-deep app-card .card2 {
+    animation-delay: 0.07s;
+}
+
+:host ::ng-deep app-card .card2 {
+    animation-delay: 0.1s;
+}
