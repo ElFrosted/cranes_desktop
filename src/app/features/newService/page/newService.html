@@ -532,5 +532,62 @@
                 </div>
             </app-card>
         </div>
+
+        <div class="panel-resumen">
+            <div class="val-msg" id="val-msg"></div>
+            <!--TODO adivinar como llenar esto (linea 810 Example.html)-->
+
+            <app-card [title]="'Resumen del Servicio'">
+                <div class="precio-base-box">
+                    <div class="pb-etq">Precio base</div>
+                    <div class="pb-mnt" id="pb-mnt">$ 0</div>
+                    <div class="pb-det" id="pb-det">Selecciona tarifa</div>
+                </div>
+                <div id="desglose" style="margin-bottom: 12px">
+                    <div class="no-dest">📍 Selecciona una tarifa para ver el desglose</div>
+                </div>
+                <div class="total-box">
+                    <div class="pb-etq" style="opacity: 0.8">Total Servicio (Aseguradora)</div>
+                    <div class="total-monto" id="total-mnt">$ 0</div>
+                    <div class="total-sub">IVA no incluido · Tarifa 2026</div>
+                </div>
+                <div class="vt-display" id="vt-disp" style="display: none">
+                    <span>💰 Valor Técnico</span>
+                    <span class="vt-lbl" id="vt-lbl">$ 0</span>
+                </div>
+                <button class="btn-primary" onclick="guardar()">💾 Guardar Servicio</button>
+                <button
+                    class="btn-sec"
+                    onclick="limpiarFormularioNuevo()"
+                    style="
+                        width: 100%;
+                        border-color: var(--rojo);
+                        color: var(--rojo);
+                        margin-bottom: 12px;
+                        font-size: 12px;
+                    "
+                >
+                    🗑️ Limpiar Formulario para crear uno nuevo
+                </button>
+                <div class="btn-row">
+                    <button class="btn-sec btn-verde" onclick="exportarPDF()">📄 PDF</button>
+                    <button class="btn-sec btn-azul" onclick="abrirMsg()">💬 Msg Técnico</button>
+                </div>
+                <div style="margin-bottom: 7px">
+                    <button class="btn-excel" onclick="exportarExcel()">
+                        📊 Exportar Cuadro de Servicios (Excel/CSV)
+                    </button>
+                </div>
+                <div style="font-size: 10px; color: var(--texto-suave); text-align: center">
+                    Estructura idéntica al Cuadro de Servicios 2025-2026
+                </div>
+
+                <app-card [title]="'Servicios Guardados Recientemente'" [className]="'cot-card'">
+                    <div class="cot-lista" id="cot-lista">
+                        <div class="empty-st">No hay servicios guardados aún.</div>
+                    </div>
+                </app-card>
+            </app-card>
+        </div>
     </div>
 </div>
