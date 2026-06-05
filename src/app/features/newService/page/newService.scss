@@ -1,11 +1,3 @@
-.panel {
-    display: none;
-}
-
-.panel.active {
-    display: block;
-}
-
 .app-grid {
     display: grid;
     grid-template-columns: 1fr 400px;
