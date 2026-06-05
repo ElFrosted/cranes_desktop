@@ -9,5 +9,6 @@ import { NgClass } from '@angular/common';
 })
 export class Card {
     @Input() title: string = '';
+    @Input() req: boolean = false;
     @Input() className: string = '';
 }
