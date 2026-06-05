@@ -1,0 +1,79 @@
+.pend-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--azul);
+}
+.pend-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    background: #dbeafe;
+    color: #1e40af;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+.pend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 6px;
+    margin-bottom: 10px;
+}
+.pend-field .lbl {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gris-3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.pend-field .val {
+    font-size: 12px;
+    color: var(--texto);
+    font-weight: 500;
+}
+.sync-status {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+}
+.sync-ok {
+    background: #dcfce7;
+    color: #166534;
+}
+.sync-err {
+    background: #fee2e2;
+    color: #991b1b;
+}
+.sync-loading {
+    background: #fef3c7;
+    color: #92400e;
+}
+.btn-sync {
+    padding: 8px 16px;
+    background: var(--azul);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.btn-sync:hover {
+    background: var(--azul-medio);
+}
+.btn-sync:disabled {
+    background: var(--gris-3);
+    cursor: not-allowed;
+}
+
+.empty-st {
+    text-align: center;
+    color: var(--gris-3);
+    font-size: 13px;
+    padding: 18px;
+}
