@@ -1,7 +1,7 @@
 <div class="panel active" id="panel-nuevo">
     <div class="app-grid">
         <div class="panel-izquierdo">
-            <app-card [title]="'tipo de servicio'" [className]="'card1'">
+            <app-card [title]="'tipo de servicio'" [req]="true" [className]="'card1'">
                 <div class="tsv-bar" id="tsv-bar">
                     <div class="tsv-btn active" onclick="selTipoSvc(this, 'Grúa')">🚛 Grúa</div>
                     <div class="tsv-btn" onclick="selTipoSvc(this, 'Desplazamiento')">
@@ -19,7 +19,11 @@
                     <div class="tsv-btn" onclick="selTipoSvc(this, 'Hogar')">🏠 Hogar</div>
                 </div>
             </app-card>
-            <app-card [title]="'información del servicio / asegurado'" [className]="'card2'">
+            <app-card
+                [title]="'información del servicio / asegurado'"
+                [req]="true"
+                [className]="'card2'"
+            >
                 <div class="grid-2">
                     <input type="hidden" id="cli-servicio" />
                     <div class="field">
@@ -70,7 +74,7 @@
                         <label>Fecha del Servicio <span class="req">*</span></label>
                         <div class="date-field-wrapper">
                             <div class="date-display" id="fecha-display" onclick="toggleCalendar()">
-                                <!--TODO Hacer que la funciion funcione-->
+                                <!--TODO Hacer que la funcion funcione-->
                                 <span id="fecha-text">Seleccionar fecha</span>
                                 <span>📅</span>
                             </div>
@@ -174,7 +178,7 @@
                     </div>
                 </div>
             </app-card>
-            <app-card [title]="'ruta del servicio'" [className]="'card3'">
+            <app-card [title]="'ruta del servicio'" [req]="true" [className]="'card3'">
                 <div class="field">
                     <label>Origen <span class="req">*</span></label>
                     <input
@@ -241,7 +245,7 @@
                     </div>
                 </div>
             </app-card>
-            <app-card [title]="'aseguradora / operador'" [className]="'card4'">
+            <app-card [title]="'aseguradora / operador'" [req]="true" [className]="'card4'">
                 <div class="aseg-pills" style="margin-bottom: 10px">
                     <!--TODO hacer que todo los botones funcionen-->
                     <div class="aseg-pill" data-aseg="BOLIVAR" onclick="selAseg(this, 'BOLIVAR')">
@@ -304,7 +308,7 @@
                     💡 La aseguradora determina las tarifas base y recargos.
                 </div>
             </app-card>
-            <app-card [title]="'tarifa base - grúa'" [className]="'card5'">
+            <app-card [title]="'tarifa base - grúa'" [req]="true" [className]="'card5'">
                 <div class="grid-2" id="tipo-veh-row">
                     <div class="field">
                         <label>Ciudad destino <span class="req">*</span></label>
@@ -354,7 +358,7 @@
                     </div>
                 </div>
             </app-card>
-            <app-card [title]="'kilómetros adicionales'" [className]="'card6'">
+            <app-card [title]="'kilómetros adicionales'" [req]="true" [className]="'card6'">
                 <div class="km-block">
                     <div class="km-block-title">🛣️ Km Normal</div>
                     <div class="km-row">
@@ -392,7 +396,7 @@
                     <!--TODO adivinar como llenar esto (linea 701 Example.html)-->
                 </div>
             </app-card>
-            <app-card [title]="'servicios adicionales'" [className]="'cart7'">
+            <app-card [title]="'servicios adicionales'" [req]="true" [className]="'card7'">
                 <!--TODO adivinar como llenar esto (linea 708 Example.html)-->
                 <div id="servicios-lista"></div>
                 <!-- OTRO servicio adicional manual -->
@@ -440,11 +444,11 @@
                     </div>
                 </div>
             </app-card>
-            <app-card [title]="'recargos'" [className]="'card8'">
+            <app-card [title]="'recargos'" [req]="true" [className]="'card8'">
                 <div id="recargos-lista"></div>
                 <!--TODO adivinar como llenar esto (linea 728 Example.html)-->
             </app-card>
-            <app-card [title]="'Valor Técnico & Observaciones'" [className]="'card9'">
+            <app-card [title]="'Valor Técnico & Observaciones'" [req]="true" [className]="'card9'">
                 <div class="field">
                     <label>Tarifa del técnico</label>
                     <div class="vt-row">
@@ -587,6 +591,12 @@
                         <div class="empty-st">No hay servicios guardados aún.</div>
                     </div>
                 </app-card>
+            </app-card>
+            <app-card [title]="'servicios guardados recientemente'">
+                <div class="cot-lista" id="cot-lista">
+                    <div class="empty-st">No hay servicios guardados aún.</div>
+                </div>
+                <!--TODO adivinar como llenar esto (linea 846 Example.html)-->
             </app-card>
         </div>
     </div>

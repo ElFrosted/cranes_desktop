@@ -734,6 +734,67 @@ input[type='date'] {
     overflow-y: auto;
 }
 
+.cot-item {
+    padding: 10px 12px;
+    border: 1.5px solid var(--gris-2);
+    border-radius: 10px;
+    margin-bottom: 6px;
+    background: var(--gris-0);
+}
+.cot-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cot-num-lbl {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    color: var(--azul);
+    font-size: 13px;
+}
+.cot-total-d {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    color: var(--verde);
+    font-size: 14px;
+}
+.cot-det {
+    font-size: 11px;
+    color: var(--texto-suave);
+    margin-top: 3px;
+}
+.cot-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+}
+.btn-edit {
+    padding: 5px 12px;
+    background: var(--azul-claro);
+    color: var(--azul);
+    border: 1px solid #bfdbfe;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.btn-edit:hover {
+    background: var(--azul-claro);
+}
+.btn-del {
+    padding: 5px 10px;
+    background: #fdf2f2;
+    color: var(--rojo);
+    border: 1px solid #fca5a5;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.btn-del:hover {
+    background: #fee2e2;
+}
+
 .empty-st {
     text-align: center;
     color: var(--gris-3);
