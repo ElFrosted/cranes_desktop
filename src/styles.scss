@@ -38,4 +38,59 @@ body {
     min-height: 100vh;
     padding: 20px 16px 48px;
     color: var(--texto);
+
+    label {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--texto-suave);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+    }
+    select,
+    input[type='number'],
+    input[type='text'],
+    textarea {
+        width: 100%;
+        padding: 10px 13px;
+        border: 1.5px solid var(--gris-2);
+        border-radius: 10px;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 14px;
+        color: var(--texto);
+        background: var(--gris-1);
+        transition:
+            border 0.2s,
+            box-shadow 0.2s;
+        outline: none;
+    }
+    select:focus,
+    input:focus,
+    textarea:focus {
+        border-color: var(--azul-medio);
+        box-shadow: 0 0 0 3px rgba(26, 77, 138, 0.12);
+        background: var(--blanco);
+    }
+    select.invalid,
+    input.invalid {
+        border-color: var(--rojo) !important;
+        background: #fff5f5;
+    }
+
+    .field {
+        margin-bottom: 13px;
+    }
+
+    .empty-st {
+        text-align: center;
+        color: var(--gris-3);
+        font-size: 13px;
+        padding: 18px;
+    }
+
+    .panel {
+        max-width: 1160px;
+        margin: 0 auto;
+    }
 }
