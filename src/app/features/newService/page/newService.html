@@ -2,20 +2,15 @@
     <div class="panel-izquierdo">
         <app-card [title]="'tipo de servicio'" [req]="true" [className]="'card1'">
             <div class="tsv-bar" id="tsv-bar">
-                <div class="tsv-btn active" onclick="selTipoSvc(this, 'Grúa')">🚛 Grúa</div>
-                <div class="tsv-btn" onclick="selTipoSvc(this, 'Desplazamiento')">
-                    🗺️ Desplazamiento
-                </div>
-                <div class="tsv-btn" onclick="selTipoSvc(this, 'Carro Taller')">
-                    🔧 Carro Taller
-                </div>
-                <div class="tsv-btn" onclick="selTipoSvc(this, 'Conductor Elegido')">
-                    🧑‍✈️ Conductor Elegido
-                </div>
-                <div class="tsv-btn" onclick="selTipoSvc(this, 'Mensajería')">📦 Mensajería</div>
-                <div class="tsv-btn" onclick="selTipoSvc(this, 'Hogar')">🏠 Hogar</div>
+                <div class="tsv-btn active">🚛 Grúa</div>
+                <div class="tsv-btn">🗺️ Desplazamiento</div>
+                <div class="tsv-btn">🔧 Carro Taller</div>
+                <div class="tsv-btn">🧑‍✈️ Conductor Elegido</div>
+                <div class="tsv-btn">📦 Mensajería</div>
+                <div class="tsv-btn">🏠 Hogar</div>
             </div>
         </app-card>
+
         <app-card
             [title]="'información del servicio / asegurado'"
             [req]="true"
@@ -23,27 +18,26 @@
         >
             <div class="grid-2">
                 <input type="hidden" id="cli-servicio" />
+
                 <div class="field">
-                    <label>N° Registro (auto)</label
-                    ><input
-                        type="text"
-                        id="cot-num"
-                        readonly
-                        style="background: #f0f4f8; color: var(--texto-suave)"
-                    />
+                    <label>N° Registro (auto)</label>
+                    <input type="text" id="cot-num" readonly class="input-readonly" />
                 </div>
+
                 <div class="field">
-                    <label>Nombre Asegurado <span class="req">*</span></label
-                    ><input type="text" id="cli-nombre" placeholder="Ej: Sofía Marzola" />
+                    <label>Nombre Asegurado <span class="req">*</span></label>
+                    <input type="text" id="cli-nombre" placeholder="Ej: Sofía Marzola" />
                 </div>
+
                 <div class="field">
-                    <label>Placa del Vehículo <span class="req">*</span></label
-                    ><input type="text" id="cli-placa" placeholder="Ej: JFT 123" />
+                    <label>Placa del Vehículo <span class="req">*</span></label>
+                    <input type="text" id="cli-placa" placeholder="Ej: JFT 123" />
                 </div>
+
                 <div class="field">
                     <label>Teléfono / Celular <span class="req">*</span></label>
                     <div class="custom-select-wrap">
-                        <select id="cli-telefono-sel" onchange="onTelefonoChange()">
+                        <select id="cli-telefono-sel">
                             <option value="">— Selecciona —</option>
                             <option value="6012540243">6012540243</option>
                             <option value="OTRO">OTRO (pegar número)</option>
@@ -54,60 +48,54 @@
                         id="cli-telefono"
                         class="otro-input"
                         placeholder="Pega o digita el teléfono"
-                        style="margin-top: 6px; display: none"
                     />
                 </div>
+
                 <div class="field">
                     <label>N° Autorización <span class="req">*</span></label>
-                    <input
-                        type="text"
-                        id="cli-autorizacion"
-                        placeholder="Ej: 26120165"
-                        oninput="checkDupAutorizacion()"
-                    />
+                    <input type="text" id="cli-autorizacion" placeholder="Ej: 26120165" />
                     <div class="dup-warn" id="dup-auth-warn"></div>
                 </div>
+
                 <div class="field">
                     <label>Fecha del Servicio <span class="req">*</span></label>
                     <div class="date-field-wrapper">
-                        <div class="date-display" id="fecha-display" onclick="toggleCalendar()">
-                            <!--TODO Hacer que la funcion funcione-->
+                        <div class="date-display" id="fecha-display">
                             <span id="fecha-text">Seleccionar fecha</span>
                             <span>📅</span>
                         </div>
                         <input type="hidden" id="cli-fecha" />
                         <div class="calendar-popup" id="calendar-popup">
                             <div class="cal-header">
-                                <button class="cal-nav" onclick="calNav(-1)">‹</button>
+                                <button class="cal-nav">‹</button>
                                 <span class="cal-month-lbl" id="cal-month-lbl"></span>
-                                <button class="cal-nav" onclick="calNav(1)">›</button>
+                                <button class="cal-nav">›</button>
                             </div>
                             <div class="cal-grid" id="cal-grid"></div>
                         </div>
                     </div>
                 </div>
+
                 <div class="field">
                     <label>Hora del Servicio <span class="req">*</span></label>
                     <input
                         type="text"
                         id="cli-hora"
                         placeholder="Ej: 14:30 → se convierte a AM/PM"
-                        oninput="formatHora(this)"
                         maxlength="5"
                     />
-                    <div class="time-display-row" id="hora-ampm-row" style="display: none">
-                        <span style="font-size: 12px; color: var(--texto-suave)">→</span>
-                        <span
-                            id="hora-12h"
-                            style="font-size: 13px; font-weight: 600; color: var(--texto)"
-                        ></span>
+
+                    <div class="time-display-row" id="hora-ampm-row">
+                        <span class="time-display-row__arrow">→</span>
+                        <span id="hora-12h" class="time-display-row__text"></span>
                         <span class="ampm-badge" id="hora-ampm-badge">AM</span>
                     </div>
                 </div>
+
                 <div class="field">
                     <label>Técnico / Conductor <span class="req">*</span></label>
                     <div class="custom-select-wrap">
-                        <select id="cli-tecnico-sel" onchange="onTecnicoChange()">
+                        <select id="cli-tecnico-sel">
                             <option value="">— Selecciona conductor —</option>
                             <option value="DIEGO CAYAPU">DIEGO CAYAPU</option>
                             <option value="GERMAN ROSERO">GERMAN ROSERO</option>
@@ -137,10 +125,11 @@
                         />
                     </div>
                 </div>
+
                 <div class="field">
                     <label>Placa de la Grúa</label>
                     <div class="custom-select-wrap">
-                        <select id="cli-placa-grua-sel" onchange="onPlacaGruaChange()">
+                        <select id="cli-placa-grua-sel">
                             <option value="">— Selecciona placa —</option>
                             <option value="ETK920">ETK920</option>
                             <option value="ETL375">ETL375</option>
@@ -161,6 +150,7 @@
                         />
                     </div>
                 </div>
+
                 <div class="field">
                     <label>Estado del Servicio</label>
                     <select id="cli-estado">
@@ -175,121 +165,67 @@
                 </div>
             </div>
         </app-card>
+
         <app-card [title]="'ruta del servicio'" [req]="true" [className]="'card3'">
             <div class="field">
                 <label>Origen <span class="req">*</span></label>
-                <input
-                    type="text"
-                    id="cli-origen"
-                    placeholder="Ej: Jamundí, Valle del Cauca"
-                    oninput="resetMaps()"
-                />
+                <input type="text" id="cli-origen" placeholder="Ej: Jamundí, Valle del Cauca" />
             </div>
             <div class="field">
                 <label>Destino <span class="req">*</span></label>
-                <input
-                    type="text"
-                    id="cli-destino"
-                    placeholder="Ej: Palmira, Valle del Cauca"
-                    oninput="resetMaps()"
-                />
+                <input type="text" id="cli-destino" placeholder="Ej: Palmira, Valle del Cauca" />
             </div>
-            <button class="btn-maps" id="btn-maps" onclick="calcularMaps()">
-                📍 Calcular km automáticamente (OSRM)
-            </button>
-            <div
-                style="
-                    margin-top: 6px;
-                    padding: 8px 11px;
-                    background: #fffbeb;
-                    border: 1px solid #ffe082;
-                    border-radius: 8px;
-                    font-size: 11px;
-                    color: #92400e;
-                    line-height: 1.5;
-                "
-            >
+
+            <button class="btn-maps" id="btn-maps">📍 Calcular km automáticamente (OSRM)</button>
+
+            <div class="maps-info-banner">
                 ℹ️ <strong>¿Por qué difiere del km de Google Maps?</strong> Este cálculo suma
                 <em>Cali→Origen + Origen→Destino</em> (el recorrido real de la grúa), mientras que
                 Google Maps solo muestra el trayecto del cliente. La diferencia corresponde al
                 desplazamiento desde la base hasta el punto de recogida.
             </div>
-            <button
-                class="btn-maps"
-                id="btn-gmaps"
-                onclick="abrirGoogleMaps()"
-                style="background: #34a853; margin-top: 8px"
-            >
+
+            <button class="btn-maps btn-maps--gmaps" id="btn-gmaps">
                 🗺️ Ver ruta en Google Maps
             </button>
-            <div id="maps-res" style="display: none" class="maps-result">
+
+            <div id="maps-res" class="maps-result">
                 <div class="maps-km-val" id="maps-km-val">— km</div>
                 <div class="maps-km-sub" id="maps-km-sub"></div>
-                <div style="margin-top: 6px; font-size: 11px; color: var(--texto-suave)">
-                    Ruta: <span id="maps-ruta" style="font-weight: 600"></span>
+                <div class="maps-result__route-info">
+                    Ruta: <span id="maps-ruta" class="maps-result__route-bold"></span>
                 </div>
-                <div style="display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap">
-                    <button class="maps-copy-btn" onclick="copiarKmAlCampo()">
-                        ➕ Usar estos km en el formulario
-                    </button>
-                    <button
-                        class="maps-copy-btn"
-                        onclick="abrirGoogleMaps()"
-                        style="background: #34a853"
-                    >
+                <div class="maps-result__actions">
+                    <button class="maps-copy-btn">➕ Usar estos km en el formulario</button>
+                    <button class="maps-copy-btn maps-copy-btn--gmaps">
                         🗺️ Ver en Google Maps
                     </button>
                 </div>
             </div>
         </app-card>
+
         <app-card [title]="'aseguradora / operador'" [req]="true" [className]="'card4'">
-            <div class="aseg-pills" style="margin-bottom: 10px">
-                <!--TODO hacer que todo los botones funcionen-->
-                <div class="aseg-pill" data-aseg="BOLIVAR" onclick="selAseg(this, 'BOLIVAR')">
-                    🟢 Bolívar
-                </div>
-                <div class="aseg-pill" data-aseg="AXA" onclick="selAseg(this, 'AXA')">🔴 AXA</div>
-                <div class="aseg-pill active" data-aseg="IKE" onclick="selAseg(this, 'IKE')">
-                    🔵 IKE
-                </div>
-                <div class="aseg-pill" data-aseg="OTRO" onclick="selAseg(this, 'OTRO')">
-                    ⚪ OTRO
-                </div>
+            <div class="aseg-pills">
+                <div class="aseg-pill" data-aseg="BOLIVAR">🟢 Bolívar</div>
+                <div class="aseg-pill" data-aseg="AXA">🔴 AXA</div>
+                <div class="aseg-pill active" data-aseg="IKE">🔵 IKE</div>
+                <div class="aseg-pill" data-aseg="OTRO">⚪ OTRO</div>
             </div>
-            <div id="aseg-otro-wrap" style="display: none; margin-bottom: 10px">
+
+            <div id="aseg-otro-wrap" class="aseg-otro-container">
                 <input
                     type="text"
                     id="aseg-otro-txt"
                     placeholder="Digita el nombre de la aseguradora..."
-                    oninput="
-                        E.aseg = this.value.toUpperCase();
-                        calcular();
-                    "
-                    style="
-                        width: 100%;
-                        padding: 10px 13px;
-                        border: 1.5px solid var(--gris-2);
-                        border-radius: 10px;
-                        font-size: 14px;
-                    "
                 />
             </div>
-            <!-- Sub-opciones IKE -->
-            <div id="ike-sub-wrap" style="display: none; margin-bottom: 10px">
-                <label
-                    style="
-                        font-size: 11px;
-                        font-weight: 700;
-                        color: var(--texto-suave);
-                        letter-spacing: 0.06em;
-                        text-transform: uppercase;
-                        margin-bottom: 5px;
-                        display: block;
-                    "
+
+            <div id="ike-sub-wrap" class="ike-sub-container">
+                <label class="ike-sub-container__label"
                     >Operadora IKE <span class="req">*</span></label
                 >
                 <div class="custom-select-wrap">
-                    <select id="ike-sub-sel" onchange="E.ikeSubAseg = this.value">
+                    <select id="ike-sub-sel">
                         <option value="">— Selecciona operadora —</option>
                         <option value="HDI">HDI</option>
                         <option value="HDI BRANDEADA">HDI BRANDEADA</option>
@@ -299,45 +235,37 @@
                     </select>
                 </div>
             </div>
-            <div style="font-size: 11px; color: var(--texto-suave)">
-                💡 La aseguradora determina las tarifas base y recargos.
-            </div>
+            <div class="field-hint">💡 La aseguradora determina las tarifas base y recargos.</div>
         </app-card>
+
         <app-card [title]="'tarifa base - grúa'" [req]="true" [className]="'card5'">
             <div class="grid-2" id="tipo-veh-row">
                 <div class="field">
                     <label>Ciudad destino <span class="req">*</span></label>
-                    <select id="sel-ciudad" onchange="onCiudadChange()">
+                    <select id="sel-ciudad">
                         <option value="">— Selecciona —</option>
                     </select>
-                    <div id="ciudad-otro-wrap" style="display: none; margin-top: 6px">
-                        <input
-                            type="text"
-                            id="ciudad-otro-txt"
-                            placeholder="Digita el destino"
-                            oninput="calcular()"
-                        />
+                    <div id="ciudad-otro-wrap" class="ciudad-manual-wrap">
+                        <input type="text" id="ciudad-otro-txt" placeholder="Digita el destino" />
                         <input
                             type="number"
                             id="ciudad-otro-valor"
                             placeholder="Valor manual del servicio ($)"
                             min="0"
-                            oninput="calcular()"
-                            style="margin-top: 6px"
                             readonly
                         />
                     </div>
                 </div>
                 <div class="field">
                     <label>Tipo de vehículo</label>
-                    <select id="sel-tipo-veh" onchange="selTipoVeh(this.value)">
+                    <select id="sel-tipo-veh">
                         <option value="liviano">Liviano</option>
                         <option value="semipesado">Semipesado</option>
                     </select>
                 </div>
             </div>
-            <!-- Para tipos de tarifa fija (CE, Mensajería, etc) -->
-            <div id="tarifa-fija-section" style="display: none">
+
+            <div id="tarifa-fija-section" class="tarifa-fija-panel">
                 <table class="tarifa-table" id="tarifa-fija-table">
                     <thead>
                         <tr>
@@ -348,100 +276,68 @@
                     </thead>
                     <tbody id="tarifa-fija-body"></tbody>
                 </table>
-                <div style="margin-top: 8px; font-size: 11px; color: var(--texto-suave)">
+                <div class="field-hint">
                     💡 Haz clic en una fila para seleccionarla como precio base.
                 </div>
             </div>
         </app-card>
+
         <app-card [title]="'kilómetros adicionales'" [req]="true" [className]="'card6'">
             <div class="km-block">
                 <div class="km-block-title">🛣️ Km Normal</div>
                 <div class="km-row">
                     <div class="field">
                         <label>Cantidad</label>
-                        <input
-                            type="number"
-                            id="km-normal"
-                            min="0"
-                            value="0"
-                            oninput="calcular()"
-                        />
+                        <input type="number" id="km-normal" min="0" value="0" />
                     </div>
                     <div class="km-calc" id="km-n-c">$ 0</div>
                 </div>
                 <div class="km-info" id="km-n-i"></div>
-                <!--TODO adivinar como llenar esto (linea 691 Example.html)-->
             </div>
             <div class="km-block">
                 <div class="km-block-title">🚧 Km Zona Roja / Trocha</div>
                 <div class="km-row">
                     <div class="field">
                         <label>Cantidad</label>
-                        <input type="number" id="km-zr" min="0" value="0" oninput="calcular()" />
+                        <input type="number" id="km-zr" min="0" value="0" />
                     </div>
                     <div class="km-calc" id="km-zr-c">$ 0</div>
                 </div>
                 <div class="km-info" id="km-zr-i"></div>
-                <!--TODO adivinar como llenar esto (linea 701 Example.html)-->
             </div>
         </app-card>
+
         <app-card [title]="'servicios adicionales'" [req]="true" [className]="'card7'">
-            <!--TODO adivinar como llenar esto (linea 708 Example.html)-->
             <div id="servicios-lista"></div>
-            <!-- OTRO servicio adicional manual -->
-            <div
-                style="
-                    margin-top: 10px;
-                    border: 1.5px solid var(--gris-2);
-                    border-radius: 12px;
-                    padding: 14px;
-                    background: var(--gris-0);
-                "
-            >
-                <div
-                    style="
-                        font-size: 11px;
-                        font-weight: 700;
-                        color: var(--texto-suave);
-                        text-transform: uppercase;
-                        letter-spacing: 0.06em;
-                        margin-bottom: 10px;
-                    "
-                >
-                    ➕ Otro Servicio Adicional
-                </div>
+
+            <div class="manual-service-block">
+                <div class="manual-service-block__title">➕ Otro Servicio Adicional</div>
                 <div class="grid-2">
-                    <div class="field" style="margin-bottom: 0">
+                    <div class="field-no-margin">
                         <label>Concepto</label>
                         <input
                             type="text"
                             id="svc-otro-concepto"
                             placeholder="Ej: Traslado especial"
-                            oninput="calcular()"
                         />
                     </div>
-                    <div class="field" style="margin-bottom: 0">
+                    <div class="field-no-margin">
                         <label>Valor ($)</label>
-                        <input
-                            type="number"
-                            id="svc-otro-valor"
-                            placeholder="Ej: 50000"
-                            min="0"
-                            oninput="calcular()"
-                        />
+                        <input type="number" id="svc-otro-valor" placeholder="Ej: 50000" min="0" />
                     </div>
                 </div>
             </div>
         </app-card>
+
         <app-card [title]="'recargos'" [req]="true" [className]="'card8'">
             <div id="recargos-lista"></div>
-            <!--TODO adivinar como llenar esto (linea 728 Example.html)-->
         </app-card>
+
         <app-card [title]="'Valor Técnico & Observaciones'" [req]="true" [className]="'card9'">
             <div class="field">
                 <label>Tarifa del técnico</label>
                 <div class="vt-row">
-                    <select id="vt-sel" onchange="onVtChange()">
+                    <select id="vt-sel">
                         <option value="">— Selecciona —</option>
                         <optgroup label="Servicio de Grúa">
                             <option value="55000">LOCAL — $ 55.000</option>
@@ -475,16 +371,17 @@
                         </optgroup>
                         <option value="otro">✏️ Otro valor...</option>
                     </select>
+
                     <input
                         type="number"
                         id="vt-otro"
                         class="vt-otro"
                         placeholder="Valor manual"
                         min="0"
-                        oninput="calcular()"
                     />
                 </div>
             </div>
+
             <div class="field">
                 <label>Observaciones / Cambio de tarifa</label>
                 <input
@@ -493,6 +390,7 @@
                     placeholder="Ej: Servicio Cali-Jamundí-Cali, 45 km..."
                 />
             </div>
+
             <div class="field">
                 <label>Estado de Factura</label>
                 <select id="cli-ef">
@@ -501,23 +399,17 @@
                     <option value="FACTURADO Y PAGADO">FACTURADO Y PAGADO</option>
                 </select>
             </div>
+
             <div class="field">
                 <label>Número de Factura</label>
                 <input type="text" id="cli-num-factura" placeholder="Ej: FE-2026-001" />
             </div>
 
-            <!-- ── MÓDULO FOTOS v46 (solo admin / gerencia / tecnico) ── -->
             <div class="field" id="fotos-upload-field">
                 <label>📷 Registro Fotográfico del Servicio</label>
                 <div class="fotos-upload-wrap">
-                    <input
-                        type="file"
-                        id="fotosServicio"
-                        accept="image/*"
-                        multiple
-                        onchange="previsualizarFotos(this)"
-                    />
-                    <div id="fotos-preview" style="display: none">
+                    <input type="file" id="fotosServicio" accept="image/*" multiple />
+                    <div id="fotos-preview" class="fotos-preview-container">
                         <div class="fotos-preview-grid" id="fotos-preview-grid"></div>
                         <div class="fotos-counter" id="fotos-counter"></div>
                     </div>
@@ -528,7 +420,6 @@
 
     <div class="panel-resumen">
         <div class="val-msg" id="val-msg"></div>
-        <!--TODO adivinar como llenar esto (linea 810 Example.html)-->
 
         <app-card [title]="'Resumen del Servicio'">
             <div class="precio-base-box">
@@ -536,56 +427,49 @@
                 <div class="pb-mnt" id="pb-mnt">$ 0</div>
                 <div class="pb-det" id="pb-det">Selecciona tarifa</div>
             </div>
-            <div id="desglose" style="margin-bottom: 12px">
+
+            <div id="desglose" class="desglose-container">
                 <div class="no-dest">📍 Selecciona una tarifa para ver el desglose</div>
             </div>
+
             <div class="total-box">
-                <div class="pb-etq" style="opacity: 0.8">Total Servicio (Aseguradora)</div>
+                <div class="pb-etq total-box__label-opacity">Total Servicio (Aseguradora)</div>
                 <div class="total-monto" id="total-mnt">$ 0</div>
                 <div class="total-sub">IVA no incluido · Tarifa 2026</div>
             </div>
-            <div class="vt-display" id="vt-disp" style="display: none">
+
+            <!--TODO agregar condicional para mostrar el valor del tecnico-->
+            <div class="vt-display" id="vt-disp">
                 <span>💰 Valor Técnico</span>
                 <span class="vt-lbl" id="vt-lbl">$ 0</span>
             </div>
-            <button class="btn-primary" onclick="guardar()">💾 Guardar Servicio</button>
-            <button
-                class="btn-sec"
-                onclick="limpiarFormularioNuevo()"
-                style="
-                    width: 100%;
-                    border-color: var(--rojo);
-                    color: var(--rojo);
-                    margin-bottom: 12px;
-                    font-size: 12px;
-                "
-            >
+
+            <button class="btn-primary">💾 Guardar Servicio</button>
+
+            <button class="btn-sec btn-sec--clear">
                 🗑️ Limpiar Formulario para crear uno nuevo
             </button>
+
             <div class="btn-row">
-                <button class="btn-sec btn-verde" onclick="exportarPDF()">📄 PDF</button>
-                <button class="btn-sec btn-azul" onclick="abrirMsg()">💬 Msg Técnico</button>
-            </div>
-            <div style="margin-bottom: 7px">
-                <button class="btn-excel" onclick="exportarExcel()">
-                    📊 Exportar Cuadro de Servicios (Excel/CSV)
-                </button>
-            </div>
-            <div style="font-size: 10px; color: var(--texto-suave); text-align: center">
-                Estructura idéntica al Cuadro de Servicios 2025-2026
+                <button class="btn-sec btn-verde">📄 PDF</button>
+                <button class="btn-sec btn-azul">💬 Msg Técnico</button>
             </div>
 
-            <app-card [title]="'Servicios Guardados Recientemente'" [className]="'cot-card'">
-                <div class="cot-lista" id="cot-lista">
-                    <div class="empty-st">No hay servicios guardados aún.</div>
-                </div>
-            </app-card>
-        </app-card>
-        <app-card [title]="'servicios guardados recientemente'">
-            <div class="cot-lista" id="cot-lista">
-                <div class="empty-st">No hay servicios guardados aún.</div>
+            <div class="excel-button-wrap">
+                <button class="btn-excel">📊 Exportar Cuadro de Servicios (Excel/CSV)</button>
             </div>
-            <!--TODO adivinar como llenar esto (linea 846 Example.html)-->
+
+            <div class="footer-notice">Estructura idéntica al Cuadro de Servicios 2025-2026</div>
+        </app-card>
+
+        <app-card [title]="'servicios guardados recently'">
+            <div class="cot-lista" id="cot-lista">
+                @if(true) {
+                <app-service-saved></app-service-saved>
+                } @else {
+                <div class="empty-st">No hay servicios guardados aún.</div>
+                }
+            </div>
         </app-card>
     </div>
 </div>
