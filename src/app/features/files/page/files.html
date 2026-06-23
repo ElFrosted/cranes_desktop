@@ -1,1 +1,34 @@
-<p>files works!</p>
+<div class="panel">
+    <div class="cloud-info">
+        <strong>🔄 Sincronización en Tiempo Real</strong> — Los datos se guardan localmente en este
+        dispositivo. Para uso colaborativo simultáneo entre múltiples usuarios, se requiere
+        integración con Google Sheets API o Firebase.
+        <strong>Consulta las instrucciones al final de esta página</strong> para configurar la nube
+        con tu Drive corporativo de Gmail. <br /><br /><strong>⚠️ Nota:</strong> Por ahora, cada
+        usuario tiene su propia instancia. La sincronización en la nube requiere configuración del
+        servidor backend.
+    </div>
+    <app-card [title]="'Buscar Expediente'">
+        <div class="btn-grid">
+            <button class="btn-export-exp" onclick="exportarExcelExp()">
+                📊 Exportar Todos los Expedientes (Excel/CSV)
+            </button>
+            <div class="export-text">
+                Exporta en formato Cuadro de Servicios organizado por columnas
+            </div>
+        </div>
+        <div class="search-bar">
+            <input
+                type="text"
+                id="search-input"
+                placeholder="Buscar por N° servicio, nombre, placa, asegurado..."
+                oninput="filtrarExp()"
+            />
+            <button class="search-btn" onclick="filtrarExp()">🔍 Buscar</button>
+        </div>
+        <div id="exp-lista">
+            <div class="empty-st">No hay servicios registrados aún.</div>
+            <!--TODO adivinar como llenar esto (linea 901 Example.html)-->
+        </div>
+    </app-card>
+</div>

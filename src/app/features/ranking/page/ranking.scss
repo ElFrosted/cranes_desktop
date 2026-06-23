@@ -1,0 +1,71 @@
+// Cabecera interna de la card (Título + Select alineados)
+.rank-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+
+  // Forzamos a que el card-title local no tenga el margin-bottom por defecto aquí
+  .card-title {
+    margin-bottom: 0;
+  }
+
+  &__select-wrapper {
+    margin-bottom: 0;
+    min-width: 200px;
+  }
+
+  &__select {
+    width: 100%;
+    padding: 8px;
+    font-size: 13px;
+    border: 1.5px solid var(--azul);
+    border-radius: 8px;
+    background-color: var(--azul-claro);
+    color: var(--azul);
+    font-weight: 700;
+    cursor: pointer;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+// Contenedor de la lista de resultados
+.rank-list {
+  &__empty {
+    text-align: center;
+    color: var(--gris-3);
+    font-size: 13px;
+    padding: 18px;
+    background-color: var(--blanco);
+    border-radius: 8px;
+  }
+}
+
+// --- TUS ESTILOS BASE MANTENIDOS ---
+.card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--azul);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 14px;
+    background: var(--verde-claro);
+    border-radius: 2px;
+  }
+}

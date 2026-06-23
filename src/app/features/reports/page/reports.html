@@ -1,1 +1,190 @@
-<p>reports works!</p>
+<div class="panel">
+  <h2 class="title">📊 Generación de Informes y Filtrado Avanzado</h2>
+
+  <div class="reports-banner">
+    <span class="reports-banner__text">
+      📂 <strong>Modo Optimizado:</strong> La app trabaja con datos recientes por defecto.
+      Para estadísticas históricas completas, pulse aquí.
+    </span>
+    <button class="reports-banner__button">
+      📥 Cargar Historial Completo de Nube
+    </button>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card kpi-card--verde">
+      <div class="kpi-card__icon">📅</div>
+      <div class="kpi-card__label">Ventas Hoy</div>
+      <div id="dash-hoy" class="kpi-card__value">$ —</div>
+      <div id="dash-hoy-sub" class="kpi-card__subtitle">0 servicios hoy</div>
+    </div>
+
+    <div class="kpi-card kpi-card--azul">
+      <div class="kpi-card__icon">📆</div>
+      <div class="kpi-card__label">Ventas del Mes</div>
+      <div id="dash-mes" class="kpi-card__value">$ —</div>
+      <div id="dash-mes-sub" class="kpi-card__subtitle">0 servicios este mes</div>
+    </div>
+
+    <div class="kpi-card kpi-card--rojo">
+      <div class="kpi-card__icon">💸</div>
+      <div class="kpi-card__label">Por Cobrar</div>
+      <div id="dash-cobrar" class="kpi-card__value">$ —</div>
+      <div id="dash-cobrar-sub" class="kpi-card__subtitle">0 servicios sin facturar</div>
+    </div>
+  </div>
+
+  <div id="dash-fuente-lbl" class="owner-notice">
+    🔒 Vista Propietario — Los montos reflejan tu <strong>VALOR TÉCNICO</strong> (PRODUCCIÓN GRÚA). Los totales de empresa no son visibles.
+  </div>
+
+  <div class="chart-section">
+    <div class="chart-section__title">🏆 Top Aseguradoras — Servicios del mes actual</div>
+    <div id="dash-chart-body">
+      <div class="chart-section__empty">Sin datos para el mes actual.</div>
+    </div>
+  </div>
+
+  <div class="diagnostic-panel">
+    <div class="diagnostic-panel__header">
+      🔍 Diagnóstico — Desglose por servicio (clic para expandir/colapsar)
+    </div>
+    
+    <div id="dash-debug-body" class="diagnostic-panel__body">
+      <table class="diagnostic-table">
+        <thead>
+          <tr class="diagnostic-table__row-header">
+            <th class="diagnostic-table__th">N° REG</th>
+            <th class="diagnostic-table__th">FECHA (raw)</th>
+            <th class="diagnostic-table__th">FECHA parsed</th>
+            <th class="diagnostic-table__th">ESTADO</th>
+            <th class="diagnostic-table__th">FACT.</th>
+            <th class="diagnostic-table__th">VR ASEG (raw)</th>
+            <th class="diagnostic-table__th">VR ASEG parsed</th>
+            <th class="diagnostic-table__th">¿Mes?</th>
+            <th class="diagnostic-table__th">¿Cobrar?</th>
+            <th class="diagnostic-table__th">EXCLUIDO POR</th>
+          </tr>
+        </thead>
+        <tbody id="dash-debug-rows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <app-card [title]="'Filtros de Búsqueda Multicolumna'">
+    <div class="filter-form">
+      <div class="filter-form__field">
+        <label class="filter-form__label">Fecha Inicio</label>
+        <input type="date" id="inf-fecha-ini" class="filter-form__input" />
+      </div>
+      <div class="filter-form__field">
+        <label class="filter-form__label">Fecha Fin</label>
+        <input type="date" id="inf-fecha-fin" class="filter-form__input" />
+      </div>
+      <div class="filter-form__field">
+        <label class="filter-form__label">Aseguradora</label>
+        <select id="inf-aseg" class="filter-form__select">
+          <option value="">— Todas —</option>
+          <option value="BOLIVAR">BOLIVAR</option>
+          <option value="AXA">AXA</option>
+          <option value="IKE">IKE</option>
+        </select>
+      </div>
+      <div class="filter-form__field">
+        <label class="filter-form__label">Tipo de Servicio</label>
+        <select id="inf-tipo-svc" class="filter-form__select">
+          <option value="">— Todos —</option>
+          <option value="Grúa">Grúa</option>
+          <option value="Desplazamiento">Desplazamiento</option>
+          <option value="Carro Taller">Carro Taller</option>
+          <option value="Conductor Elegido">Conductor Elegido</option>
+          <option value="Mensajería">Mensajería</option>
+          <option value="Hogar">Hogar</option>
+        </select>
+      </div>
+      <div class="filter-form__field">
+        <label class="filter-form__label">Conductor / Técnico</label>
+        <select id="inf-conductor" class="filter-form__select">
+          <option value="">— Todos —</option>
+        </select>
+      </div>
+      <div class="filter-form__field">
+        <label class="filter-form__label">Placa Grúa</label>
+        <select id="inf-grua" class="filter-form__select">
+          <option value="">— Todas —</option>
+        </select>
+      </div>
+      <div class="filter-form__field">
+        <label class="filter-form__label">Estado Servicio</label>
+        <select id="inf-estado" class="filter-form__select">
+          <option value="">— Todos —</option>
+          <option value="FINALIZADO">FINALIZADO</option>
+          <option value="EN PROCESO">EN PROCESO</option>
+          <option value="FALLIDO">FALLIDO</option>
+          <option value="CANCELADO">CANCELADO</option>
+          <option value="PROGRAMADO">PROGRAMADO</option>
+        </select>
+      </div>
+      <div class="filter-form__field">
+        <label class="filter-form__label">Estado Factura</label>
+        <select id="inf-ef" class="filter-form__select">
+          <option value="">— Todos —</option>
+          <option value="NO FACTURADO">NO FACTURADO</option>
+          <option value="FACTURADO">FACTURADO</option>
+          <option value="FACTURADO Y PAGADO">FACTURADO Y PAGADO</option>
+        </select>
+      </div>
+      <div class="filter-form__field filter-form__field--full-width">
+        <label class="filter-form__label">Búsqueda Libre Omnidireccional (Origen, Destino, Autorización, Celular, Observaciones...)</label>
+        <input type="text" id="inf-busqueda" class="filter-form__input" placeholder="Escribe cualquier dato para filtrar en toda la base de datos..." />
+      </div>
+    </div>
+    
+    <div class="filter-actions">
+      <button class="filter-actions__btn filter-actions__btn--apply">
+        🔍 Aplicar Filtros
+      </button>
+      <button class="filter-actions__btn filter-actions__btn--clear">
+        🗑️ Borrar Filtros
+      </button>
+    </div>
+  </app-card>
+
+  <app-card [title]="'Resultados del Informe'">
+    <div class="report-overview">
+      <div class="report-card report-card--blue">
+        <div class="report-card__title">CANTIDAD SERVICIOS</div>
+        <div id="inf-tot-svc" class="report-card__value">0</div>
+      </div>
+      <div class="report-card report-card--green">
+        <div class="report-card__title">VR ASEGURADORA TOTAL</div>
+        <div id="inf-tot-aseg" class="report-card__value">$ 0</div>
+      </div>
+      <div class="report-card report-card--amber">
+        <div class="report-card__title">VALOR TÉCNICO TOTAL</div>
+        <div id="inf-tot-vt" class="report-card__value">$ 0</div>
+      </div>
+      <div class="report-card report-card--indigo">
+        <div class="report-card__title">RENTABILIDAD / UTILIDAD</div>
+        <div id="inf-tot-rent" class="report-card__value">0%</div>
+        <div id="inf-tot-util" class="report-card__subvalue">$ 0</div>
+      </div>
+    </div>
+
+    <div class="report-actions">
+      <button class="report-actions__btn report-actions__btn--export">
+        📊 Descargar Informe en Excel
+      </button>
+      <button class="report-actions__btn report-actions__btn--primary">
+        📄 Imprimir / Guardar PDF
+      </button>
+    </div>
+
+    <div class="report-preview">
+      <div class="report-preview__info">
+        PREVISUALIZACIÓN DE DATOS (Desliza hacia la derecha para ver las 36 columnas ➡)
+      </div>
+      <div id="inf-tabla-container" class="report-preview__table-container"></div>
+    </div>
+  </app-card>
+</div>

@@ -1,3 +1,46 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.sort {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 3px;
+}
+
+.syncs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.diag-box {
+    display: none;
+    margin-top: 12px;
+    background: #1e293b;
+    color: #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
 .pend-num {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;

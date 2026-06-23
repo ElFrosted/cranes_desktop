@@ -1,1 +1,36 @@
-<p>conciliations works!</p>
+<div class="panel">
+    <div class="title">🔗 Conciliación — Asignación de Números de Factura</div>
+    <app-card [title]="'Cargar Archivo Plano'">
+        <div class="info">
+            Carga un archivo <strong>CSV o TXT</strong> con columnas <strong>AUTORIZACION</strong> y
+            <strong>NUMERO DE FACTURA</strong>.<br />
+            El sistema cruzará cada autorización con los servicios registrados y asignará
+            automáticamente el número de factura.
+        </div>
+        <div class="field">
+            <label>Archivo plano (.csv o .txt)</label>
+            <input
+                type="file"
+                id="conc-file"
+                accept=".csv,.txt"
+                class="upload"
+            />
+        </div>
+        <div class="field">
+            <label>Separador de columnas</label>
+            <select id="conc-sep" class="separator">
+                <option value=",">Coma (,)</option>
+                <option value=";">Punto y coma (;)</option>
+                <option value="	">Tabulación (Tab)</option>
+                <option value="|">Pipe (|)</option>
+            </select>
+        </div>
+        <button
+            onclick="conciliarArchivo()"
+            class="btn"
+        >
+            🔗 Ejecutar Conciliación
+        </button>
+        <div id="conc-resultado" class="result"></div>
+    </app-card>
+</div>

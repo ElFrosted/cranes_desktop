@@ -1,66 +1,32 @@
-
-<div style="max-width: 1160px; margin: 0 auto">
-        <div
-            style="
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 14px;
-                flex-wrap: wrap;
-                gap: 10px;
-            "
-        >
-            <div>
-                <div
-                    style="
-                        font-family: 'Space Grotesk', sans-serif;
-                        font-size: 18px;
-                        font-weight: 700;
-                        color: #fff;
-                    "
-                >
-                    🔄 Servicios EN PROCESO
-                </div>
-                <div style="font-size: 13px; color: rgba(255, 255, 255, 0.8); margin-top: 3px">
-                    Ordenados del más reciente al más antiguo · misma fecha: por hora ascendente
-                </div>
+<div class="panel">
+    <div class="header">
+        <div>
+            <div class="title">🔄 Servicios EN PROCESO</div>
+            <div class="sort">
+                Ordenados del más reciente al más antiguo · misma fecha: por hora ascendente
             </div>
-            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap">
-                <span class="sync-status sync-loading" id="sync-status-pend"
-                    >⏳ Sin sincronizar</span
-                >
-                <button class="btn-sync" onclick="sincronizarDesdeCloud()" id="btn-sync-cloud">
-                    ☁️ Sincronizar desde Google Sheets
-                </button>
-                <button
-                    class="btn-sync"
-                    style="background: #f59e0b; border-color: #f59e0b"
-                    onclick="diagnosticarConexion()"
-                >
-                    🔍 Diagnóstico
-                </button>
-            </div>
-            <div
-                id="diag-box"
-                style="
-                    display: none;
-                    margin-top: 12px;
-                    background: #1e293b;
-                    color: #e2e8f0;
-                    border-radius: 12px;
-                    padding: 16px;
-                    font-family: monospace;
-                    font-size: 12px;
-                    line-height: 1.8;
-                    white-space: pre-wrap;
-                    word-break: break-all;
-                "
-            ></div>
         </div>
-        <app-card>
-            <div id="pend-lista">
-                <div class="empty-st">No hay servicios EN PROCESO registrados.</div>
-            </div>
-            <!--TODO adivinar como llenar esto (linea 875 Example.html)-->
-        </app-card>
+        <div class="syncs">
+            <span class="sync-status sync-loading" id="sync-status-pend">⏳ Sin sincronizar</span>
+            <button class="btn-sync" onclick="sincronizarDesdeCloud()" id="btn-sync-cloud">
+                ☁️ Sincronizar desde Google Sheets
+            </button>
+            <button
+                class="btn-sync"
+                style="background: #f59e0b; border-color: #f59e0b"
+                onclick="diagnosticarConexion()"
+            >
+                🔍 Diagnóstico
+            </button>
+        </div>
+        <div id="diag-box" class="diag-box">
+            <!--TODO adivinar como llenar esto (linea 871 Example.html)-->
+        </div>
     </div>
+    <app-card>
+        <div id="pend-lista">
+            <div class="empty-st">No hay servicios EN PROCESO registrados.</div>
+        </div>
+        <!--TODO adivinar como llenar esto (linea 875 Example.html)-->
+    </app-card>
+</div>

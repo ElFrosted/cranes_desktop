@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { Card } from "../../../shared/components/card/card";
 
 @Component({
     selector: 'app-conciliations',
-    imports: [],
+    imports: [Card],
     templateUrl: './conciliations.html',
     styleUrl: './conciliations.scss',
 })

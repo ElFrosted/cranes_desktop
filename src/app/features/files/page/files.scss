@@ -1,0 +1,140 @@
+.cloud-info {
+    background: linear-gradient(135deg, #e8f0fb, #e6f5ee);
+    border: 1.5px solid #bfdbfe;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 14px;
+    font-size: 12px;
+    color: var(--texto-suave);
+    margin-bottom: 14px;
+}
+.cloud-info strong {
+    color: var(--azul);
+}
+
+.btn-grid {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.btn-export-exp {
+    background: linear-gradient(135deg, #217346, #2e9050);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+.btn-export-exp:hover {
+    opacity: 0.9;
+}
+
+.export-text {
+    font-size: 11px;
+    color: var(--texto-suave);
+    align-self: center;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+.search-bar input {
+    flex: 1;
+}
+.search-btn {
+    padding: 10px 18px;
+    background: var(--azul);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 13px;
+}
+.exp-card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1.5px solid var(--gris-2);
+    padding: 16px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+.exp-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--azul);
+}
+.exp-nombre {
+    font-size: 13px;
+    color: var(--texto-suave);
+}
+.exp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 6px;
+    margin-bottom: 10px;
+}
+.exp-field {
+    font-size: 12px;
+}
+.exp-field .lbl {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gris-3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.exp-field .val {
+    color: var(--texto);
+    font-weight: 500;
+}
+.exp-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+@media print {
+    .tabs,
+    .panel-izquierdo,
+    .cot-card {
+        display: none !important;
+    }
+    .app-grid {
+        grid-template-columns: 1fr;
+    }
+    .panel-resumen {
+        position: static;
+    }
+    .btn-primary,
+    .btn-sec,
+    .btn-excel,
+    .val-msg {
+        display: none !important;
+    }
+    .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    .header-inner {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}

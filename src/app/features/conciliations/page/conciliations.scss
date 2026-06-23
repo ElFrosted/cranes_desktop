@@ -1,0 +1,51 @@
+.title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 14px;
+}
+
+.info {
+    font-size: 13px;
+    color: var(--texto-suave);
+    margin-bottom: 14px;
+    line-height: 1.6;
+}
+
+.field {
+    margin-bottom: 13px;
+}
+
+.upload {
+    padding: 8px;
+    background: #fff;
+    border: 1.5px solid var(--gris-2);
+    border-radius: 10px;
+    font-size: 13px;
+    width: 100%;
+}
+
+.separator {
+    width: auto;
+    min-width: 180px;
+}
+
+.btn {
+    padding: 12px 24px;
+    background: var(--azul);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 6px;
+}
+
+.result { //TODO revisar despues
+    margin-top: 16px;
+    display: none;
+}
+    
