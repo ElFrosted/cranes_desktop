@@ -1,0 +1,254 @@
+// ... Tus estilos existentes se mantienen igual ...
+
+.pend-card {
+    background: #fff;
+    border-radius: 12px;
+    border: 2px solid #dbeafe;
+    padding: 16px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.pend-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+.pend-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--azul);
+}
+
+// NUEVOS ESTILOS EXTRAÍDOS DEL HTML
+.pend-badge-proceso {
+    background: #dcfce7;
+    color: #166534;
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-left: 6px;
+}
+
+.pend-subtitle {
+    font-size: 13px;
+    color: var(--texto-suave);
+    margin-top: 4px;
+}
+
+.tc-precio {
+    text-align: right;
+
+    .vr-mask {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        color: var(--verde);
+    }
+    .vr-lbl {
+        font-size: 11px;
+        color: var(--gris-3);
+    }
+}
+
+.pend-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.btn-msg-custom {
+    padding: 5px 12px;
+    font-size: 11px;
+    width: auto; // Evita que se estire al 100% como dicta .btn-sec
+}
+
+.estado-selector-wrap {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 4px 8px;
+
+    .estado-lbl {
+        font-size: 11px;
+        font-weight: 700;
+        color: #64748b;
+        white-space: nowrap;
+    }
+
+    .estado-select {
+        border: none;
+        background: transparent;
+        font-size: 12px;
+        font-weight: 600;
+        color: #1e293b;
+        outline: none;
+        cursor: pointer;
+        padding: 2px 4px;
+    }
+}
+
+.btn-aplicar-estado {
+    padding: 4px 12px;
+    background: var(--verde);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.upload-zone-wrap {
+    margin-top: 10px;
+    padding: 12px;
+    background: #f0f9ff;
+    border: 1.5px dashed #7dd3fc;
+    border-radius: 12px;
+
+    .upload-zone-lbl {
+        font-size: 11px;
+        font-weight: 700;
+        color: #0369a1;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 8px;
+    }
+
+    .upload-zone-input {
+        width: 100%;
+        padding: 7px;
+        border: 1.5px solid #bae6fd;
+        border-radius: 8px;
+        font-size: 12px;
+        background: #fff;
+        cursor: pointer;
+    }
+
+    .preview-container-hidden {
+        display: none;
+        margin-top: 8px;
+    }
+
+    .btn-upload-server {
+        margin-top: 8px;
+        padding: 8px 16px;
+        background: #0284c7;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+    }
+}
+
+// ... El resto de tus estilos (.pend-grid, .btn-edit, etc.) continúan aquí ...
+.pend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 6px;
+    margin-bottom: 10px;
+}
+.pend-field .lbl {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gris-3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.pend-field .val {
+    font-size: 12px;
+    color: var(--texto);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.btn-edit {
+    padding: 5px 12px;
+    background: var(--azul-claro);
+    color: var(--azul);
+    border: 1px solid #bfdbfe;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.btn-edit:hover {
+    background: var(--azul-claro);
+}
+.btn-sec {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 2px solid;
+    border-radius: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-azul {
+    border-color: var(--azul);
+    color: var(--azul);
+}
+.btn-azul:hover {
+    background: var(--azul-claro);
+}
+.obs-rapida-wrap {
+    background: #f0fdf4;
+    border: 1.5px solid #86efac;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+.obs-rapida-inp {
+    flex: 1;
+    border: 1.5px solid #86efac;
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    background: #fff;
+    resize: vertical;
+    min-height: 38px;
+}
+.obs-rapida-inp:focus {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(34, 168, 98, 0.1);
+}
+.obs-rapida-btn {
+    padding: 8px 14px;
+    background: var(--verde);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.obs-rapida-btn:hover {
+    background: var(--verde-claro);
+}

@@ -1,0 +1,130 @@
+<div class="pend-card">
+    <div class="pend-header">
+        <div>
+            <div class="pend-num">
+                Servicio 1303
+                <span class="pend-badge-proceso">
+                    EN PROCESO
+                </span>
+            </div>
+            <div class="pend-subtitle">
+                Beatriz Serna · EFR871
+            </div>
+        </div>
+        @if (true) { <!--TODO cambiar el true por una condicional de verdad-->
+            <div class="tc-precio">
+                <div class="vr-mask">
+                    $ 136.500
+                </div>
+                <div class="vr-lbl">VR Aseguradora</div>
+            </div>
+        }
+    </div>
+    <div class="pend-grid">
+        <div class="pend-field">
+            <div class="lbl">Fecha</div>
+            <div class="val">📅 25/6/2026</div>
+        </div>
+        <div class="pend-field">
+            <div class="lbl">Hora</div>
+            <div class="val">🕐 7:30 AM</div>
+        </div>
+        <div class="pend-field">
+            <div class="lbl">Cliente</div>
+            <div class="val">👤 Beatriz Serna</div>
+        </div>
+        <div class="pend-field">
+            <div class="lbl">Aseguradora</div>
+            <div class="val">🏢 CONNECT</div>
+        </div>
+        <div class="pend-field">
+            <div class="lbl">Conductor</div>
+            <div class="val">🧑‍✈️ VICTOR MUÑOZ</div>
+        </div>
+        <div class="pend-field">
+            <div class="lbl">Tipo Servicio</div>
+            <div class="val">🚛 Grúa</div>
+        </div>
+        <div class="pend-field">
+            <div class="lbl">Origen</div>
+            <div class="val">📍 Condominio Bosques Del Ca</div>
+        </div>
+        <div class="pend-field">
+            <div class="lbl">Destino</div>
+            <div class="val">🏁 Cl. 5 #76, Cl. 5 #76, Pam</div>
+        </div>
+    </div>
+    <div class="pend-actions">
+        @if (true) {    <!--TODO cambiar el true por una condicional de verdad-->
+            <button class="btn-edit" onclick="abrirEdicionPorNum(this)" data-num="REG-1305">
+                ✏️ Editar
+            </button>
+        }
+        <button
+            class="btn-sec btn-azul btn-msg-custom"
+            onclick="abrirMsgPorId(3641295359)"
+        >
+            💬 Msg
+        </button>
+        <div class="estado-selector-wrap">
+            <span class="estado-lbl">
+                Estado:
+            </span>
+            <select id="sel-estado-REG-1305" class="estado-select">
+                <option>— Selecciona —</option>
+                <option value="PROGRAMADO">📅 PROGRAMADO</option>
+                <option value="EN PROCESO">🔄 EN PROCESO</option>
+                <option value="EN ORIGEN">📍 EN ORIGEN</option>
+                <option value="EN DESTINO">🏁 EN DESTINO</option>
+                <option value="EN CUSTODIA">🔒 EN CUSTODIA</option>
+                <option value="FALLIDO">⚠️ FALLIDO</option>
+                <option value="CANCELADO">❌ CANCELADO</option>
+                <option value="FINALIZADO">✅ FINALIZADO</option>
+            </select>
+            <button
+                onclick="
+                    (function () {
+                        var num = 'REG-1305';
+                        var sel = document.getElementById('sel-estado-REG-1305');
+                        if (!sel || !sel.value) {
+                            _showToast('Selecciona un estado primero', 'amarillo');
+                            return;
+                        }
+                        actualizarEstadoServicio(num, sel.value);
+                    })()
+                "
+                class="btn-aplicar-estado"
+            >
+                ✔ Aplicar
+            </button>
+        </div>
+    </div>
+    <div class="obs-rapida-wrap">
+        <textarea
+            class="obs-rapida-inp"
+            id="obs-inp-REG-1305"
+            rows="2"
+            placeholder="📝 Actualizar observaciones del servicio..."
+        ></textarea>
+        <button class="obs-rapida-btn" onclick="guardarObsRapida('REG-1305')">💾 Guardar</button>
+    </div>
+    <div class="upload-zone-wrap">
+        <div class="upload-zone-lbl">
+            📷 Subir Fotos del Servicio
+        </div>
+        <input
+            type="file"
+            accept="image/*"
+            multiple
+            onchange="previsualizarFotosPend(this, 'REG-1305')"
+            class="upload-zone-input"
+        />
+        <div id="fprev-REG-1305" class="preview-container-hidden">
+            <div class="fotos-preview-grid" id="fgrid-REG-1305"></div>
+            <div class="fotos-counter" id="fcnt-REG-1305"></div>
+        </div>
+        <button onclick="subirFotosPendiente('REG-1305')" class="btn-upload-server">
+            📤 Subir Fotos al Servidor
+        </button>
+    </div>
+</div>
