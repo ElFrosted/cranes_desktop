@@ -27,8 +27,12 @@
             <button class="search-btn" onclick="filtrarExp()">🔍 Buscar</button>
         </div>
         <div id="exp-lista">
-            <div class="empty-st">No hay servicios registrados aún.</div>
-            <!--TODO adivinar como llenar esto (linea 901 Example.html)-->
+            
+            @if (true) {
+                <app-file></app-file>
+            } @else {
+                <div class="empty-st">No hay servicios registrados aún.</div>
+            }
         </div>
     </app-card>
 </div>
