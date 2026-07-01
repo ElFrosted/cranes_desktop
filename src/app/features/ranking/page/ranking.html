@@ -1,23 +1,27 @@
 <div class="panel">
-  <div class="title">🏆 Ranking de Productividad por Técnico</div>
-  
-  <app-card>
-    <div class="rank-header">
-      <div class="card-title">Rendimiento de Conductores</div>
-      
-      <div class="rank-header__select-wrapper">
-        <select id="rank-periodo" class="rank-header__select">
-          <option value="mes">📅 Este Mes</option>
-          <option value="hoy">🕐 Hoy</option>
-          <option value="semana">📆 Esta Semana</option>
-          <option value="ano">🗓️ Este Año</option>
-          <option value="historico">🌍 Histórico Total</option>
-        </select>
-      </div>
-    </div>
+    <div class="title">🏆 Ranking de Productividad por Técnico</div>
 
-    <div id="rank-lista" class="rank-list">
-      <div class="empty-st">Selecciona un período para ver el ranking.</div>
-    </div>
-  </app-card>
+    <app-card>
+        <div class="rank-header">
+            <div class="card-title">Rendimiento de Conductores</div>
+
+            <div class="rank-header__select-wrapper">
+                <select id="rank-periodo" class="rank-header__select">
+                    <option value="mes">📅 Este Mes</option>
+                    <option value="hoy">🕐 Hoy</option>
+                    <option value="semana">📆 Esta Semana</option>
+                    <option value="ano">🗓️ Este Año</option>
+                    <option value="historico">🌍 Histórico Total</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="rank-lista" class="rank-list">
+			@if (true) {
+				<app-rank-card></app-rank-card>
+			} @else {
+				<div class="empty-st">Selecciona un período para ver el ranking.</div>
+			}
+		</div>
+    </app-card>
 </div>
