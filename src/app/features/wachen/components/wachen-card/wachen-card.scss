@@ -1,0 +1,178 @@
+.cust-card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1.5px solid var(--gris-2);
+    padding: 16px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    &--in-custody {
+        border-left: 4px solid #5b21b6;
+    }
+}
+
+.cust-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+
+    &__pricing {
+        text-align: right;
+    }
+
+    &__sub {
+        font-size: 11px;
+        color: var(--texto-suave);
+    }
+}
+
+.cust-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--azul);
+}
+
+.cust-nombre {
+    font-size: 13px;
+    color: var(--texto-suave);
+}
+
+.tc-precio {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--verde);
+}
+
+.cust-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.cust-field {
+    font-size: 12px;
+
+    .lbl {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--gris-3);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .val {
+        color: var(--texto);
+        font-weight: 500;
+    }
+}
+
+.cust-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+// ── BOTONES ──
+.btn-finalize-custody {
+    padding: 7px 16px;
+    background: linear-gradient(135deg, #5b21b6, #7c3aed);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+.btn-edit {
+    padding: 5px 12px;
+    background: var(--azul-claro);
+    color: var(--azul);
+    border: 1px solid #bfdbfe;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+        background: var(--azul-claro);
+    }
+}
+
+.btn-sec {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 2px solid;
+    border-radius: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &--sm-msg {
+        padding: 5px 12px;
+        font-size: 11px;
+        width: auto;
+    }
+}
+
+.btn-azul {
+    border-color: var(--azul);
+    color: var(--azul);
+
+    &:hover {
+        background: var(--azul-claro);
+    }
+}
+
+// ── TAGS / BADGES ──
+.tag {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-left: 4px;
+
+    &-b { background: #e6f5ee; color: var(--verde); }
+    &-a { background: #fdf2f2; color: var(--rojo); }
+    &-i { background: var(--azul-claro); color: var(--azul); }
+}
+
+.tag-estado {
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-left: 4px;
+    display: inline-block;
+
+    &.tag-fin { background: #dcfce7; color: #166534; }
+    &.tag-can { background: #fee2e2; color: #991b1b; }
+    &.tag-fal { background: #fef3c7; color: #92400e; }
+    &.tag-pro { background: #dbeafe; color: #1e40af; }
+    &.tag-origen { background: #fef9c3; color: #854d0e; }
+    &.tag-destino { background: #f3e8ff; color: #6b21a8; }
+}
+
+.tag-cus {
+    background: #f0e6ff;
+    color: #5b21b6;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-left: 4px;
+}

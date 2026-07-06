@@ -1,0 +1,61 @@
+<div class="cust-card cust-card--in-custody">
+    <div class="cust-header">
+        <div>
+            <div class="cust-num">
+                Servicio 1375 — REG-1377
+                <span class="tag">CONNECT</span>
+                <span class="tag-cus">🔒 EN CUSTODIA</span>
+            </div>
+            <div class="cust-nombre">CRISTIAN VALENCIA · MXT088</div>
+        </div>
+        @if (true) { <!--TODO cambiar en base al rol-->
+        <div class="cust-header__pricing">
+            <div class="tc-precio">$ 12.500</div>
+            <div class="cust-header__sub">VR Aseguradora</div>
+        </div>
+        }
+    </div>
+    <div class="cust-grid">
+        <div class="cust-field">
+            <div class="lbl">📅 Fecha Ingreso</div>
+            <div class="val">29/6/2026</div>
+        </div>
+        <div class="cust-field">
+            <div class="lbl">🕐 Hora Ingreso</div>
+            <div class="val">9:50 PM</div>
+        </div>
+        <div class="cust-field">
+            <div class="lbl">Tipo Servicio</div>
+            <div class="val">🚛 Grúa</div>
+        </div>
+        <div class="cust-field">
+            <div class="lbl">Conductor</div>
+            <div class="val">🧑‍✈️ SOIDIN</div>
+        </div>
+        <div class="cust-field">
+            <div class="lbl">Aseguradora</div>
+            <div class="val">🏢 CONNECT</div>
+        </div>
+        <div class="cust-field">
+            <div class="lbl">Tipo Vehículo</div>
+            <div class="val">🚗 Liviano</div>
+        </div>
+        <div class="cust-field">
+            <div class="lbl">Origen</div>
+            <div class="val">📍 CUSTODIA</div>
+        </div>
+        <div class="cust-field">
+            <div class="lbl">Destino</div>
+            <div class="val">🏁 CUSTODIA</div>
+        </div>
+    </div>
+    @if (true) { <!--TODO cambiar en base al rol-->
+    <div class="cust-actions">
+        <button class="btn-finalize-custody" onclick="abrirSalidaCustodia('REG-1377')">
+            🏁 Finalizar Custodia
+        </button>
+        <button class="btn-edit" onclick="abrirEdicionPorNum(this)" data-num="REG-1377">✏️ Editar</button>
+        <button class="btn-sec btn-azul btn-sec--sm-msg" onclick="abrirMsgPorId(3641295386)">💬 Msg</button>
+    </div>
+    }
+</div>
