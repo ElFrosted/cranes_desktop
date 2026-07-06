@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Card } from "../../../shared/components/card/card";
+import { WachenCard } from "../components/wachen-card/wachen-card";
 
 @Component({
     selector: 'app-wachen',
-    imports: [Card],
+    imports: [Card, WachenCard],
     templateUrl: './wachen.html',
     styleUrl: './wachen.scss',
 })

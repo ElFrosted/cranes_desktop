@@ -1,16 +1,17 @@
 <div class="panel">
-    <div class="title">
-      🔒 Servicios EN CUSTODIA
+    <div class="title">🔒 Servicios EN CUSTODIA</div>
+    <div class="cloud-info" style="margin-bottom: 14px">
+        <strong>🔒 Custodias Activas</strong> — Servicios cuyo vehículo está bajo resguardo físico
+        de SOIDIN. Estos servicios <strong>no aparecen en Pendientes</strong> y tienen seguimiento
+        independiente.
     </div>
-    <div class="cloud-info" style="margin-bottom:14px;">
-      <strong>🔒 Custodias Activas</strong> — Servicios cuyo vehículo está bajo resguardo físico de SOIDIN.
-      Estos servicios <strong>no aparecen en Pendientes</strong> y tienen seguimiento independiente.
-    </div>
-    <app-card
-        [title]="'Vehículos en Custodia'"
-    >
-      <div id="cust-lista">
-        <div class="empty-st">🔒 No hay vehículos en custodia actualmente.</div>
-      </div>
+    <app-card [title]="'Vehículos en Custodia'">
+        <div id="cust-lista">
+            @if (true) {
+				<app-wachen-card></app-wachen-card>
+			} @else {
+				<div class="empty-st">🔒 No hay vehículos en custodia actualmente.</div>
+			}
+        </div>
     </app-card>
-  </div>
+</div>
