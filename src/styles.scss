@@ -93,4 +93,17 @@ body {
         max-width: 1160px;
         margin: 0 auto;
     }
+
+    .cloud-info {
+        background: linear-gradient(135deg, #e8f0fb, #e6f5ee);
+        border: 1.5px solid #bfdbfe;
+        border-radius: 12px;
+        padding: 14px;
+        margin-bottom: 14px;
+        font-size: 12px;
+        color: var(--texto-suave);
+    }
+    .cloud-info strong {
+        color: var(--azul);
+    }
 }
