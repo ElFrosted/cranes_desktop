@@ -1,8 +1,12 @@
 .layout {
     max-width: 1160px;
+    width: 100%;
     margin: 0 auto 16px;
     display: flex;
+    flex-wrap: nowrap; /* 1 sola fila */
+    align-items: stretch; /* Todos conservan la misma altura */
     gap: 8px;
+    box-sizing: border-box;
     animation: fadeDown 0.5s 0.1s ease both;
 }
 
@@ -15,11 +19,24 @@ button {
     cursor: pointer;
     transition: all 0.2s;
     font-family: 'Space Grotesk', sans-serif;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
+/* 🔹 Botones de navegación (Ícono arriba, Texto abajo) */
 .btn {
     background: rgba(255, 255, 255, 0.12);
     color: #fff;
+    flex: 1 1 auto; /* Se expanden proporcionalmente */
+
+    flex-direction: column; /* Ícono arriba, texto abajo */
+    gap: 4px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.15;
 
     &:hover {
         background: rgba(255, 255, 255, 0.22);
@@ -37,4 +54,8 @@ button {
     color: #fff;
     border-color: #c0392b;
     margin-left: auto;
+    flex-direction: column;
+    gap: 4px;
+    white-space: nowrap;
+    padding: 10px 22px;
 }
