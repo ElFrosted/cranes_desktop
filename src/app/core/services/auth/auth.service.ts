@@ -1,32 +1,100 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { tap } from 'rxjs';
+import { map, Observable, switchMap, tap } from 'rxjs';
+import { environment } from '../../../../environments/environment';
+import {
+    LoginRequest,
+    LoginResponse,
+    AuthUserData,
+    MenuItem,
+    UserRoutesResponse,
+} from '../../model/auth.models';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    private _isAuthenticated = signal<boolean>(!!localStorage.getItem('token'));
-    private apiUrl = ''; //TODO agregar una url
     private http = inject(HttpClient);
+    private readonly apiUrl = environment.apiUrl;
 
-    //TODO implementar interfaces para credentials
-    login(credentials: any) {
-        //                TODO | cambiar ese any por una interfaz con el tipo de dato que espero recibir
-        return this.http.post<any>(`${this.apiUrl}`, credentials).pipe(
-            tap((response) => {
-                localStorage.setItem('token', response.token); //TODO hablar para ver que tipo de datos recibo
-                this._isAuthenticated.set(true);
+    login(
+        credentials: LoginRequest,
+        remember: boolean
+    ): Observable<{ defaultRoute: string; routes: MenuItem[] }> {
+        return this.http.post<LoginResponse>(`${this.apiUrl}/user/login`, credentials).pipe(
+            switchMap((loginRes) => {
+                if (!loginRes.success || !loginRes.data.accessToken) {
+                    throw new Error(loginRes.message || 'Error de autenticación');
+                }
+
+                const authData = loginRes.data;
+                this.saveSession(authData, remember);
+
+                return this.getUserRoutes(authData.accessToken).pipe(
+                    map((routesRes) => {
+                        const routes = routesRes.data || [];
+                        const defaultRoute = routes.length > 0 ? routes[0].nombre : 'newService'; //TODO Revisar que hacer si no devuelve ninguna ruta
+
+                        this.saveUserRoutes(routes);
+
+                        return {
+                            defaultRoute,
+                            routes,
+                        };
+                    })
+                );
             })
         );
     }
 
-    logout() {
-        localStorage.removeItem('toke');
-        this._isAuthenticated.set(false);
+    getUserRoutes(token?: string): Observable<UserRoutesResponse> {
+        const authToken = token || this.getToken();
+        const headers = new HttpHeaders({
+            Authorization: `Bearer ${authToken}`,
+        });
+
+        return this.http.get<UserRoutesResponse>(`${this.apiUrl}/menu`, { headers });
     }
 
-    isLoggedIn() {
-        return this._isAuthenticated();
+    private saveSession(authData: AuthUserData, remember: boolean): void {
+        const storage = remember ? localStorage : sessionStorage;
+
+        storage.setItem('auth_token', authData.accessToken);
+        storage.setItem('user_id', authData.usuarioId.toString());
+        storage.setItem('user_doc', authData.documento);
+    }
+
+    private saveUserRoutes(routes: MenuItem[]): void {
+        localStorage.setItem('user_routes', JSON.stringify(routes));
+    }
+
+    getUserRoutesFromStorage(): MenuItem[] {
+        const routes = localStorage.getItem('user_routes');
+        return routes ? JSON.parse(routes) : [];
+    }
+
+    getToken(): string | null {
+        return localStorage.getItem('auth_token') || sessionStorage.getItem('auth_token');
+    }
+
+    getUserId(): string | null {
+        return localStorage.getItem('user_id') || sessionStorage.getItem('user_id');
+    }
+
+    hasPermissionForRoute(path: string | undefined): boolean {
+        if (!path) return false;
+
+        const allowedRoutes = this.getUserRoutesFromStorage();
+
+        return allowedRoutes.some((route) => route.nombre.toLowerCase() === path.toLowerCase());
+    }
+
+    isLoggedIn(): boolean {
+        return !!localStorage.getItem('auth_token') || !!sessionStorage.getItem('auth_token');
+    }
+
+    logout(): void {
+        localStorage.clear();
+        sessionStorage.clear();
     }
 }
