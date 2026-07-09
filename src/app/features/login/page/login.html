@@ -5,32 +5,45 @@
         alt="SOIDIN S.A.S"
     />
 
-    <div class="login-card">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-card">
         <h1 class="login-card__title">Control de Servicios</h1>
         <p class="login-card__subtitle">SOIDIN S.A.S</p>
 
+        @if (errorMessage) {
+        <div class="login-card__error">{{ errorMessage }}</div>
+        }
+
         <div class="login-card__field">
             <label class="login-card__label">Usuario</label>
-            <input type="text" class="login-card__input" placeholder="Ingresa tu usuario" />
+            <input
+                type="text"
+                formControlName="user"
+                class="login-card__input"
+                [class.invalid]="loginForm.get('user')?.touched && loginForm.get('user')?.invalid"
+                placeholder="Ingresa tu usuario"
+            />
         </div>
 
         <div class="login-card__field">
             <label class="login-card__label">Contraseña</label>
             <input
                 type="password"
+                formControlName="password"
                 class="login-card__input"
+                [class.invalid]="loginForm.get('password')?.touched && loginForm.get('password')?.invalid"
                 placeholder="Ingresa tu contraseña"
-                (keyup.enter)="onSubmit()"
             />
         </div>
 
         <div class="login-card__field login-card__field--checkbox">
             <label class="login-card__remember">
-                <input type="checkbox" class="login-card__checkbox" />
+                <input type="checkbox" formControlName="remember" class="login-card__checkbox" />
                 Recordar mis datos de acceso
             </label>
         </div>
 
-        <button class="login-card__button" (click)="onSubmit()">Ingresar al Sistema</button>
-    </div>
+        <button type="submit" class="login-card__button" [disabled]="isLoading">
+            {{ isLoading ? 'Cargando...' : 'Ingresar al Sistema' }}
+        </button>
+    </form>
 </div>
