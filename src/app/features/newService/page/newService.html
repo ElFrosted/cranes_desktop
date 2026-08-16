@@ -1,13 +1,13 @@
-<div class="app-grid">
+<form [formGroup]="serviceForm" class="app-grid">
     <div class="panel-izquierdo">
         <app-card [title]="'tipo de servicio'" [req]="true" [className]="'card1'">
             <div class="tsv-bar" id="tsv-bar">
-                <div class="tsv-btn active">🚛 Grúa</div>
-                <div class="tsv-btn">🗺️ Desplazamiento</div>
-                <div class="tsv-btn">🔧 Carro Taller</div>
-                <div class="tsv-btn">🧑‍✈️ Conductor Elegido</div>
-                <div class="tsv-btn">📦 Mensajería</div>
-                <div class="tsv-btn">🏠 Hogar</div>
+                <div class="tsv-btn" [class.active]="serviceForm.get('tipoServicio')?.value === 'GRUA'" (click)="setTipoServicio('GRUA')">🚛 Grúa</div>
+                <div class="tsv-btn" [class.active]="serviceForm.get('tipoServicio')?.value === 'DESPLAZAMIENTO'" (click)="setTipoServicio('DESPLAZAMIENTO')">🗺️ Desplazamiento</div>
+                <div class="tsv-btn" [class.active]="serviceForm.get('tipoServicio')?.value === 'CARRO_TALLER'" (click)="setTipoServicio('CARRO_TALLER')">🔧 Carro Taller</div>
+                <div class="tsv-btn" [class.active]="serviceForm.get('tipoServicio')?.value === 'CONDUCTOR_ELEGIDO'" (click)="setTipoServicio('CONDUCTOR_ELEGIDO')">🧑‍✈️ Conductor Elegido</div>
+                <div class="tsv-btn" [class.active]="serviceForm.get('tipoServicio')?.value === 'MENSAJERIA'" (click)="setTipoServicio('MENSAJERIA')">📦 Mensajería</div>
+                <div class="tsv-btn" [class.active]="serviceForm.get('tipoServicio')?.value === 'HOGAR'" (click)="setTipoServicio('HOGAR')">🏠 Hogar</div>
             </div>
         </app-card>
 
@@ -17,38 +17,36 @@
             [className]="'card2'"
         >
             <div class="grid-2">
-                <input type="hidden" id="cli-servicio" />
+                <input type="hidden" id="cli-servicio" /> <!--TODO mirar para que es esto-->
 
                 <div class="field">
                     <label>N° Registro (auto)</label>
-                    <input type="text" id="cot-num" readonly class="input-readonly" />
+                    <input type="text" formControlName="registroNum" readonly class="input-readonly" placeholder="Auto-generado" />
                 </div>
 
                 <div class="field">
                     <label>Nombre Asegurado <span class="req">*</span></label>
-                    <input type="text" id="cli-nombre" placeholder="Ej: Sofía Marzola" />
+                    <input type="text" formControlName="nombreAsegurado" placeholder="Ej: Sofía Marzola" />
                 </div>
 
                 <div class="field">
                     <label>Placa del Vehículo <span class="req">*</span></label>
-                    <input type="text" id="cli-placa" placeholder="Ej: JFT 123" />
+                    <input type="text" formControlName="placaVehiculo" placeholder="Ej: JFT 123" />
                 </div>
 
                 <div class="field">
                     <label>Teléfono / Celular <span class="req">*</span></label>
                     <div class="custom-select-wrap">
-                        <select id="cli-telefono-sel">
+                        <select formControlName="telefonoSel">
                             <option value="">— Selecciona —</option>
-                            <option value="6012540243">6012540243</option>
-                            <option value="OTRO">OTRO (pegar número)</option>
+                            @for (tel of telefonosLista(); track tel.id) {
+                                <option [value]="tel.descripcion">{{ tel.descripcion }}</option>
+                            }
                         </select>
                     </div>
-                    <input
-                        type="text"
-                        id="cli-telefono"
-                        class="otro-input"
-                        placeholder="Pega o digita el teléfono"
-                    />
+                    @if (serviceForm.get('telefonoSel')?.value === 'OTRO (Pegar número)') {
+                        <input type="text" formControlName="telefonoOtro" class="otro-input" placeholder="Pega o digita el teléfono" />
+                    }
                 </div>
 
                 <div class="field">
@@ -95,59 +93,30 @@
                 <div class="field">
                     <label>Técnico / Conductor <span class="req">*</span></label>
                     <div class="custom-select-wrap">
-                        <select id="cli-tecnico-sel">
+                        <select formControlName="tecnicoSel" id="cli-tecnico-sel">
                             <option value="">— Selecciona conductor —</option>
-                            <option value="DIEGO CAYAPU">DIEGO CAYAPU</option>
-                            <option value="GERMAN ROSERO">GERMAN ROSERO</option>
-                            <option value="ANDRES MORENO">ANDRES MORENO</option>
-                            <option value="ANDRES JIMENEZ">ANDRES JIMENEZ</option>
-                            <option value="BRYAN ECHEVERRY">BRYAN ECHEVERRY</option>
-                            <option value="JHON F">JHON F</option>
-                            <option value="JUAN CARLOS ARCE">JUAN CARLOS ARCE</option>
-                            <option value="JONATHAN GAITAN">JONATHAN GAITAN</option>
-                            <option value="JULIO RESTREPO">JULIO RESTREPO</option>
-                            <option value="NESTOR TRUJILLO">NESTOR TRUJILLO</option>
-                            <option value="JORGE GONZALES">JORGE GONZALES</option>
-                            <option value="JOSE MINOTTA">JOSE MINOTTA</option>
-                            <option value="CAMILO DIAZ">CAMILO DIAZ</option>
-                            <option value="LILIAM ROLDAN">LILIAM ROLDAN</option>
-                            <option value="YEFERSON RIOS">YEFERSON RIOS</option>
-                            <option value="JHON SANCHEZ">JHON SANCHEZ</option>
-                            <option value="DANIEL ORDOÑEZ">DANIEL ORDOÑEZ</option>
+                            @for (tec of tecnicosLista(); track tec.id) {
+                                <option [value]="tec.id">{{ tec.primerNombre }}</option>
+                            }
                             <option value="OTRO">OTRO</option>
                         </select>
-                        <input type="hidden" id="cli-tecnico" value="" />
-                        <input
-                            type="text"
-                            id="cli-tecnico-otro"
-                            class="otro-input"
-                            placeholder="Digita el nombre del conductor"
-                        />
+                        @if (serviceForm.get('tecnicoSel')?.value === 'OTRO') {
+                            <input type="text" formControlName="telefonoOtro" class="otro-input" placeholder="Digita el nombre del conductor" />
+                        }
                     </div>
                 </div>
 
                 <div class="field">
                     <label>Placa de la Grúa</label>
                     <div class="custom-select-wrap">
-                        <select id="cli-placa-grua-sel">
+                        <select formControlName="placaGruaSel"  id="cli-placa-grua-sel">
                             <option value="">— Selecciona placa —</option>
                             <option value="ETK920">ETK920</option>
-                            <option value="ETL375">ETL375</option>
-                            <option value="NQL626">NQL626</option>
-                            <option value="ETK452">ETK452</option>
-                            <option value="WPK608">WPK608</option>
-                            <option value="QIS471">QIS471</option>
-                            <option value="QOP488">QOP488</option>
-                            <option value="QOP509">QOP509</option>
                             <option value="OTRO">OTRO</option>
                         </select>
-                        <input type="hidden" id="cli-placa-grua" value="" />
-                        <input
-                            type="text"
-                            id="cli-placa-grua-otro"
-                            class="otro-input"
-                            placeholder="Digita la placa manualmente"
-                        />
+                        @if (serviceForm.get('placaGruaSel')?.value === 'OTRO') {
+                            <input type="text" formControlName="placaGruaOtro" class="otro-input" placeholder="Digita la placa manualmente" />
+                        }
                     </div>
                 </div>
 
@@ -465,11 +434,11 @@
         <app-card [title]="'servicios guardados recently'">
             <div class="cot-lista" id="cot-lista">
                 @if(true) {
-                    <app-service-saved></app-service-saved>
+                <app-service-saved></app-service-saved>
                 } @else {
-                    <div class="empty-st">No hay servicios guardados aún.</div>
+                <div class="empty-st">No hay servicios guardados aún.</div>
                 }
             </div>
         </app-card>
     </div>
-</div>
+</form>
