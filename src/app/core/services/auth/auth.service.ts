@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { map, Observable, switchMap, tap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
@@ -8,7 +8,7 @@ import {
     AuthUserData,
     MenuItem,
     UserRoutesResponse,
-} from '../../model/auth.models';
+} from '../../../shared/interfaces/auth.interface';
 
 @Injectable({
     providedIn: 'root',
@@ -30,7 +30,7 @@ export class AuthService {
                 const authData = loginRes.data;
                 this.saveSession(authData, remember);
 
-                return this.getUserRoutes(authData.accessToken).pipe(
+                return this.getUserRoutes().pipe(
                     map((routesRes) => {
                         const routes = routesRes.data || [];
                         const defaultRoute = routes.length > 0 ? routes[0].nombre : 'newService'; //TODO Revisar que hacer si no devuelve ninguna ruta
@@ -47,13 +47,8 @@ export class AuthService {
         );
     }
 
-    getUserRoutes(token?: string): Observable<UserRoutesResponse> {
-        const authToken = token || this.getToken();
-        const headers = new HttpHeaders({
-            Authorization: `Bearer ${authToken}`,
-        });
-
-        return this.http.get<UserRoutesResponse>(`${this.apiUrl}/menu`, { headers });
+    getUserRoutes(): Observable<UserRoutesResponse> {
+        return this.http.get<UserRoutesResponse>(`${this.apiUrl}/menu`);
     }
 
     private saveSession(authData: AuthUserData, remember: boolean): void {
