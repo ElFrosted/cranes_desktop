@@ -23,8 +23,8 @@ export class AuthService {
     ): Observable<{ defaultRoute: string; routes: MenuItem[] }> {
         return this.http.post<LoginResponse>(`${this.apiUrl}/user/login`, credentials).pipe(
             switchMap((loginRes) => {
-                if (!loginRes.success || !loginRes.data.accessToken) {
-                    throw new Error(loginRes.message || 'Error de autenticación');
+                if (!loginRes.success || !loginRes.data?.accessToken) {
+                    throw loginRes;
                 }
 
                 const authData = loginRes.data;
@@ -33,7 +33,7 @@ export class AuthService {
                 return this.getUserRoutes().pipe(
                     map((routesRes) => {
                         const routes = routesRes.data || [];
-                        const defaultRoute = routes.length > 0 ? routes[0].nombre : 'newService'; //TODO Revisar que hacer si no devuelve ninguna ruta
+                        const defaultRoute = routes[0].nombre   
 
                         this.saveUserRoutes(routes);
 
