@@ -109,7 +109,7 @@
                 <div class="field">
                     <label>Placa de la Grúa</label>
                     <div class="custom-select-wrap">
-                        <select formControlName="placaGruaSel"  id="cli-placa-grua-sel">
+                        <select formControlName="placaGruaSel" id="cli-placa-grua-sel">
                             <option value="">— Selecciona placa —</option>
                             <option value="ETK920">ETK920</option>
                             <option value="OTRO">OTRO</option>
@@ -415,7 +415,7 @@
 
             <button class="btn-primary">💾 Guardar Servicio</button>
 
-            <button class="btn-sec btn-sec--clear">
+            <button (click)="limpiarFormulario()" class="btn-sec btn-sec--clear">
                 🗑️ Limpiar Formulario para crear uno nuevo
             </button>
 
