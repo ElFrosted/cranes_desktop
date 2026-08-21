@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ApiResponse } from '../../../shared/interfaces/api-response.interface';
 
 @Component({
     selector: 'app-login',
@@ -21,8 +22,8 @@ export class Login {
         remember: [false],
     });
 
-    isLoading = false;
-    errorMessage: string | null = null;
+    errorMessage = signal<string | null>(null);
+    isLoading = signal<boolean>(false);
 
     onSubmit(): void {
         if (this.loginForm.invalid) {
@@ -30,21 +31,28 @@ export class Login {
             return;
         }
 
-        this.isLoading = true;
-        this.errorMessage = null;
+        this.errorMessage.set(null);
+        this.isLoading.set(true);
 
         const { user, password, remember } = this.loginForm.value;
 
         this.authService.login({ user, password }, remember).subscribe({
             next: ({ defaultRoute }) => {
-                this.isLoading = false;
+                this.isLoading.set(false);
 
                 this.router.navigate([`/${defaultRoute}`]);
             },
             error: (err) => {
-                this.isLoading = false;
-                this.errorMessage =
-                    err.error?.message || err.message || 'Usuario o contraseña incorrectos.';
+                this.isLoading.set(false);
+
+                // Capturamos el objeto de respuesta de la API (si viene de Express/HTTP o directo de la excepción)
+                const apiRes: ApiResponse<null> | null = err.error || err;
+
+                if (apiRes?.showsMessage && apiRes?.message) {
+                    this.errorMessage.set(apiRes.message);
+                } else {
+                    this.errorMessage.set('Credenciales inválidas o error de conexión.');
+                }
             },
         });
     }

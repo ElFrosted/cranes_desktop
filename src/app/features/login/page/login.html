@@ -9,8 +9,10 @@
         <h1 class="login-card__title">Control de Servicios</h1>
         <p class="login-card__subtitle">SOIDIN S.A.S</p>
 
-        @if (errorMessage) {
-        <div class="login-card__error">{{ errorMessage }}</div>
+        @if (errorMessage()) {
+            <div class="login-card__error">
+                ⚠️ {{ errorMessage() }}
+            </div>
         }
 
         <div class="login-card__field">
@@ -42,8 +44,8 @@
             </label>
         </div>
 
-        <button type="submit" class="login-card__button" [disabled]="isLoading">
-            {{ isLoading ? 'Cargando...' : 'Ingresar al Sistema' }}
+        <button type="submit" class="login-card__button" [disabled]="isLoading()">
+            {{ isLoading() ? 'Cargando...' : 'Ingresar al Sistema' }}
         </button>
     </form>
 </div>
