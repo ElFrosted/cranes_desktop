@@ -32,6 +32,10 @@ export class AuthService {
 
                 return this.getUserRoutes().pipe(
                     map((routesRes) => {
+                        if (!routesRes.success || !routesRes.data) {
+                            throw routesRes
+                        }
+
                         const routes = routesRes.data || [];
                         const defaultRoute = routes[0].nombre   
 
