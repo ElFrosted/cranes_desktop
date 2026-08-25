@@ -9,8 +9,9 @@
         <h1 class="login-card__title">Control de Servicios</h1>
         <p class="login-card__subtitle">SOIDIN S.A.S</p>
 
+        <!--Condicional para mostrar el error-->
         @if (errorMessage()) {
-            <div class="login-card__error">
+            <div class="error">
                 ⚠️ {{ errorMessage() }}
             </div>
         }
@@ -45,6 +46,7 @@
         </div>
 
         <button type="submit" class="login-card__button" [disabled]="isLoading()">
+            <!--Condicional para no presionar varias veces el boton cuando carga-->
             {{ isLoading() ? 'Cargando...' : 'Ingresar al Sistema' }}
         </button>
     </form>

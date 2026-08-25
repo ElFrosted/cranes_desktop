@@ -45,7 +45,6 @@ export class Login {
             error: (err) => {
                 this.isLoading.set(false);
 
-                // Capturamos el objeto de respuesta de la API (si viene de Express/HTTP o directo de la excepción)
                 const apiRes: ApiResponse<null> | null = err.error || err;
 
                 if (apiRes?.showsMessage && apiRes?.message) {

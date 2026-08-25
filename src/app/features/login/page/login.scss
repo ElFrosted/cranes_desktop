@@ -1,8 +1,7 @@
-// Variables locales (puedes usar las de tu tema global)
 $azul-fondo: #0f3460;
 $verde-accent: #1a7f4b;
-$texto-suave: #666; // Reemplazo de var(--texto-suave)
-$gris-borde: #ddd; // Reemplazo de var(--gris-2)
+$texto-suave: #666;
+$gris-borde: #ddd;
 
 .login-overlay {
     position: fixed;
@@ -116,16 +115,5 @@ $gris-borde: #ddd; // Reemplazo de var(--gris-2)
         &:active {
             transform: scale(0.98);
         }
-    }
-    
-    &__error {
-        background-color: #fee2e2;
-        border: 1px solid #ef4444;
-        color: #991b1b;
-        padding: 0.75rem 1rem;
-        border-radius: 0.5rem;
-        font-size: 0.875rem;
-        margin-bottom: 1rem;
-        animation: fadeIn 0.2s ease-in-out;
     }
 }
