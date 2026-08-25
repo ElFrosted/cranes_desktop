@@ -3,7 +3,8 @@ import { Card } from '../../../shared/components/card/card';
 import { ServiceSaved } from '../components/service-saved/service-saved';
 import { NewServiceService } from '../services/new-service.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Telefono, UsuarioTecnico } from '../../../shared/interfaces/newService.interface';
+import { Grua, Telefono, UsuarioTecnico } from '../../../shared/interfaces/newService.interface';
+import { ApiResponse } from '../../../shared/interfaces/api-response.interface';
 
 @Component({
     selector: 'app-dashboard',
@@ -17,6 +18,9 @@ export class NewService implements OnInit {
 
     telefonosLista = signal<Telefono[]>([]);
     tecnicosLista = signal<UsuarioTecnico[]>([]);
+    gruasLista = signal<Grua[]>([]);
+
+    errorMessage = signal<string | null>(null);
 
     serviceForm: FormGroup = this.fb.group({
         // Tipo de servicio
@@ -71,14 +75,27 @@ export class NewService implements OnInit {
     }
 
     private cargarDatosIniciales(): void {
+        this.errorMessage.set(null);
+
         this.newServiceService.getServiceInitData().subscribe({
             next: (response) => {
-                if (response.success && response.data) {
-                    this.telefonosLista.set(response.data.telefonos);
-                    this.tecnicosLista.set(response.data.usuariosTecnicos);
+                this.telefonosLista.set(response.data!.telefonos);
+                this.tecnicosLista.set(response.data!.usuariosTecnicos);
+                this.gruasLista.set(response.data!.gruas);
+            },
+            error: (err) => {
+                console.error('Error al cargar datos del servicio:', err);
+
+                const apiRes: ApiResponse<null> | null = err.error || err;
+
+                if (apiRes?.showsMessage && apiRes?.message) {
+                    this.errorMessage.set(apiRes.message);
+                } else {
+                    this.errorMessage.set(
+                        'No se pudieron cargar los parámetros iniciales del servicio.'
+                    );
                 }
             },
-            error: (err) => console.error('Error al cargar datos del servicio:', err),
         });
     }
 

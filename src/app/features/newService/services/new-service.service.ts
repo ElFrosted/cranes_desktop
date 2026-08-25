@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ServiceInitData } from '../../../shared/interfaces/newService.interface';
 import { environment } from '../../../../environments/environment';
 
@@ -12,6 +12,13 @@ export class NewServiceService {
     private readonly apiUrl = environment.apiUrl;
 
     getServiceInitData(): Observable<ServiceInitData> {
-        return this.http.get<ServiceInitData>(`${this.apiUrl}/servicio/parametros-administracion`);
+        return this.http.get<ServiceInitData>(`${this.apiUrl}/servicio/parametros-administracion`).pipe(
+            map((response) => {
+                if (!response.success || !response.data) {
+                    throw response;
+                }
+                return response;
+            })
+        );
     }
 }

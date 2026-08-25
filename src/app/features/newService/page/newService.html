@@ -1,3 +1,9 @@
+@if (errorMessage()) {
+    <div class="error">
+        ⚠️ {{ errorMessage() }}
+    </div>
+}
+
 <form [formGroup]="serviceForm" class="app-grid">
     <div class="panel-izquierdo">
         <app-card [title]="'tipo de servicio'" [req]="true" [className]="'card1'">
@@ -111,8 +117,9 @@
                     <div class="custom-select-wrap">
                         <select formControlName="placaGruaSel" id="cli-placa-grua-sel">
                             <option value="">— Selecciona placa —</option>
-                            <option value="ETK920">ETK920</option>
-                            <option value="OTRO">OTRO</option>
+                            @for (grua of gruasLista(); track grua.id) {
+                                <option [value]="grua.placa ">{{ grua.placa }}</option>
+                            }
                         </select>
                         @if (serviceForm.get('placaGruaSel')?.value === 'OTRO') {
                             <input type="text" formControlName="placaGruaOtro" class="otro-input" placeholder="Digita la placa manualmente" />

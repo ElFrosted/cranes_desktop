@@ -1,4 +1,4 @@
-import { ApiResponse } from "./api-response.interface";
+import { ApiResponse } from './api-response.interface';
 
 export interface Telefono {
     id: number;
@@ -17,9 +17,17 @@ export interface UsuarioTecnico {
     rolId: number;
 }
 
+export interface Grua {
+    id: number;
+    tipoVehiculoId: number;
+    placa: string;
+    codigo: string;
+}
+
 export interface Data {
     telefonos: Telefono[];
     usuariosTecnicos: UsuarioTecnico[];
+    gruas: Grua[];
 }
 
-export type ServiceInitData = ApiResponse<Data>
+export type ServiceInitData = ApiResponse<Data>;
