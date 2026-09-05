@@ -41,6 +41,11 @@ export const routes: Routes = [
         canActivate: [authGuard], // proteccion de ruta
         loadChildren: () => import('./features/wachen/wachen.routes').then((m) => m.WACHEN_ROUTES),
     },
+    {
+        path: 'administration',
+        //canActivate: [authGuard], // proteccion de ruta
+        loadChildren: () => import('./features/administration/administration.routes').then((m) => m.ADMINISTRATION_ROUTES),
+    },
 
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: '**', redirectTo: 'login' },
