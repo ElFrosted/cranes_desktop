@@ -1,0 +1,109 @@
+:host ::ng-deep app-card .layout {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.admin-card {
+    border: 2px solid #b7b7b7;
+    border-radius: 12px;
+    padding: 1rem;
+    background-color: #fff;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    &__title-group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        h2 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+    }
+}
+
+.search-input {
+    flex: 1;
+    max-width: 400px;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+.btn-toggle {
+    font-family: 'Arimo', monospace;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    background-color: var(--verde);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Grilla para las tarjetas (Tarjetas redondeadas como el diseño) */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #fafafa;
+}
+
+.item-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background: #fff;
+    min-height: 110px;
+    text-align: center;
+
+    &__avatar {
+        font-size: 1.8rem;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.85rem;
+
+        small {
+            color: #666;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+
+        button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+    }
+}

@@ -1,0 +1,140 @@
+<div class="panel">
+    <app-card className="layout">
+        <h1 class="admin-title">Administracion del Sistema</h1>
+
+        <section class="admin-card">
+            <header class="admin-card__header">
+                <div class="admin-card__title-group">
+                    <button class="btn-toggle" (click)="toggleSection('users')">
+                        {{ isUsersOpen() ? '' : ''}}
+                    </button>
+                    <h2>Usuarios</h2>
+                </div>
+
+                <input
+                    type="text"
+                    class="search-input"
+                    placeholder="Buscar usuarios..."
+                    [formControl]="userSearchCtrl"
+                />
+
+                <button class="btn-primary" (click)="openUserModal()">Crear</button>
+            </header>
+
+            @if (isUsersOpen()) {
+            <div class="cards-grid">
+                @for (user of filteredUsers(); track user.id) {
+                <div class="item-card">
+                    <div class="item-card__avatar">👤</div>
+                    <div class="item-card__info">
+                        <strong>{{ user.primerNombre }} {{ user.primerApellido }}</strong>
+                        <small>Doc: {{ user.documento }}</small>
+                    </div>
+                    <div class="item-card__actions">
+                        <button (click)="openUserModal(user)">✏️</button>
+                        <button (click)="deleteUser(user.id)">🗑️</button>
+                    </div>
+                </div>
+                } @empty {
+                <p class="empty-msg">No hay usuarios registrados.</p>
+                }
+            </div>
+            }
+        </section>
+
+        <section class="admin-card">
+            <header class="admin-card__header">
+                <div class="admin-card__title-group">
+                    <button class="btn-toggle" (click)="toggleSection('vehicles')">
+                        {{ isVehiclesOpen() ? '' : ''}}
+                    </button>
+                    <h2>Vehículos</h2>
+                </div>
+
+                <input
+                    type="text"
+                    class="search-input"
+                    placeholder="Buscar vehículos..."
+                    [formControl]="vehicleSearchCtrl"
+                />
+
+                <button class="btn-primary" (click)="openVehicleModal()">Crear</button>
+            </header>
+
+            @if (isVehiclesOpen()) {
+            <div class="cards-grid">
+                @for (vehicle of filteredVehicles(); track vehicle.id) {
+                <div class="item-card">
+                    <div class="item-card__avatar">🚛</div>
+                    <div class="item-card__info">
+                        <strong>{{ vehicle.placa }}</strong>
+                        <small>{{ vehicle.tipoVehiculoId.nombre }} - Cod: {{ vehicle.codigo }}</small>
+                    </div>
+                    <div class="item-card__actions">
+                        <button (click)="openVehicleModal(vehicle)">✏️</button>
+                        <button (click)="deleteVehicle(vehicle.id)">🗑️</button>
+                    </div>
+                </div>
+                } @empty {
+                <p class="empty-msg">No hay vehículos registrados.</p>
+                }
+            </div>
+            }
+        </section>
+
+        <section class="admin-card">
+            <header class="admin-card__header">
+                <div class="admin-card__title-group">
+                    <button class="btn-toggle" (click)="toggleSection('statuses')">
+                        {{ isStatusesOpen() ? '' : ''}}
+                    </button>
+                    <h2>Estados de Servicio</h2>
+                </div>
+
+                <input
+                    type="text"
+                    class="search-input"
+                    placeholder="Buscar estados..."
+                    [formControl]="statusSearchCtrl"
+                />
+
+                <button class="btn-primary" (click)="openStatusModal()">Crear</button>
+            </header>
+
+            @if (isStatusesOpen()) {
+            <div class="cards-grid">
+                @for (status of filteredStatuses(); track status.id) {
+                <div class="item-card">
+                    <div class="item-card__avatar">🏷️</div>
+                    <div class="item-card__info">
+                        <strong>{{ status.descripcion }}</strong>
+                        <small>Código: {{ status.codigo }}</small>
+                    </div>
+                    <div class="item-card__actions">
+                        <button (click)="openStatusModal(status)">✏️</button>
+                        <button (click)="deleteStatus(status.id)">🗑️</button>
+                    </div>
+                </div>
+                }
+            </div>
+            }
+        </section>
+    </app-card>
+</div>
+
+<!-- POPUPS / MODALES DE CREACIÓN Y EDICIÓN -->
+<app-modal 
+    [isOpen]="isUserModalOpen()" 
+    [title]="selectedUser() ? 'Editar Usuario' : 'Crear Usuario'"
+    (closed)="closeUserModal()"
+>
+    <!-- Aquí va el formulario reactivo de usuario -->
+</app-modal>
+
+<app-modal 
+    [isOpen]="isVehicleModalOpen()" 
+    [title]="selectedVehicle() ? 'Editar Vehículo' : 'Crear Vehículo'"
+    (closed)="closeVehicleModal()"
+>
+    <!-- Aquí va el formulario reactivo de vehículo -->
+</app-modal>
