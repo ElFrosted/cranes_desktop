@@ -26,6 +26,14 @@
     --brand-blue: #1a4d8a;
 }
 
+@font-face {
+    font-family: Arimo;
+    src: url('/fonts/ArimoNerdFont-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;

@@ -1,4 +1,6 @@
 import { ApiResponse } from './api-response.interface';
+import { User } from './user.interface';
+import { Vehicle } from './vehicle.interface';
 
 export interface Telefono {
     id: number;
@@ -6,28 +8,10 @@ export interface Telefono {
     codigo: string;
 }
 
-export interface UsuarioTecnico {
-    id: number;
-    tipoDocumentoId: number;
-    documento: string;
-    primerNombre: string;
-    segundoNombre: string | null;
-    primerApellido: string;
-    segundoApellido: string | null;
-    rolId: number;
-}
-
-export interface Grua {
-    id: number;
-    tipoVehiculoId: number;
-    placa: string;
-    codigo: string;
-}
-
 export interface Data {
     telefonos: Telefono[];
-    usuariosTecnicos: UsuarioTecnico[];
-    gruas: Grua[];
+    usuariosTecnicos: User[];
+    gruas: Vehicle[];
 }
 
 export type ServiceInitData = ApiResponse<Data>;

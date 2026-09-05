@@ -3,8 +3,10 @@ import { Card } from '../../../shared/components/card/card';
 import { ServiceSaved } from '../components/service-saved/service-saved';
 import { NewServiceService } from '../services/new-service.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Grua, Telefono, UsuarioTecnico } from '../../../shared/interfaces/newService.interface';
+import { Telefono } from '../../../shared/interfaces/newService.interface';
 import { ApiResponse } from '../../../shared/interfaces/api-response.interface';
+import { Vehicle } from '../../../shared/interfaces/vehicle.interface';
+import { User } from '../../../shared/interfaces/user.interface';
 
 @Component({
     selector: 'app-dashboard',
@@ -17,8 +19,8 @@ export class NewService implements OnInit {
     private newServiceService = inject(NewServiceService);
 
     telefonosLista = signal<Telefono[]>([]);
-    tecnicosLista = signal<UsuarioTecnico[]>([]);
-    gruasLista = signal<Grua[]>([]);
+    tecnicosLista = signal<User[]>([]);
+    gruasLista = signal<Vehicle[]>([]);
 
     errorMessage = signal<string | null>(null);
 

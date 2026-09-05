@@ -12,13 +12,13 @@ export class NewServiceService {
     private readonly apiUrl = environment.apiUrl;
 
     getServiceInitData(): Observable<ServiceInitData> {
-        return this.http.get<ServiceInitData>(`${this.apiUrl}/servicio/parametros-administracion`).pipe(
-            map((response) => {
-                if (!response.success || !response.data) {
-                    throw response;
-                }
-                return response;
-            })
-        );
+        return this.http
+            .get<ServiceInitData>(`${this.apiUrl}/servicio/parametros-administracion`)
+            .pipe(
+                map((res) => {
+                    if (!res.success || !res.data) throw res;
+                    return res;
+                })
+            );
     }
 }

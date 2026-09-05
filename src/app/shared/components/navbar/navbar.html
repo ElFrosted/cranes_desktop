@@ -15,6 +15,15 @@
         </button>
     }
 
+    <!--TODO borrar-->
+    <button class="btn"
+        [routerLink]="['/administration']"
+        routerLinkActive="active"
+    >
+        <span class="icon">🚪</span>
+        <span class="label">administration</span>
+    </button>
+
     <button class="logout" (click)="onLogout()">
         <span class="icon">🚪</span>
         <span class="label">Cerrar Sesión</span>
