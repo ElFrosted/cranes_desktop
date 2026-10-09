@@ -1,0 +1,50 @@
+<form [formGroup]="statusForm" (ngSubmit)="onSubmit()" class="form-container">
+    
+    <!-- Campo Codigo -->
+    <div class="form-group">
+        <label for="codigo">Código <span class="required">*</span></label>
+        <input 
+            id="codigo" 
+            type="text" 
+            formControlName="codigo" 
+            placeholder="Ej: 001"
+            [class.is-invalid]="statusForm.get('codigo')?.invalid && statusForm.get('codigo')?.touched"
+        />
+        @if (statusForm.get('codigo')?.invalid && statusForm.get('codigo')?.touched) {
+            <span class="error-text">El código es obligatorio.</span>
+        }
+    </div>
+
+    <!-- Campo Descripcion -->
+    <div class="form-group">
+        <label for="descripcion">Descripción <span class="required">*</span></label>
+        <input 
+            id="descripcion" 
+            type="text" 
+            formControlName="descripcion" 
+            placeholder="Ej: finalizado"
+            [class.is-invalid]="statusForm.get('descripcion')?.invalid && statusForm.get('descripcion')?.touched"
+        />
+        @if (statusForm.get('descripcion')?.invalid && statusForm.get('descripcion')?.touched) {
+            <span class="error-text">La descripción es obligatoria.</span>
+        }
+    </div>
+
+    <!-- Campo Activo -->
+    <div class="form-group checkbox-group">
+        <label class="checkbox-label">
+            <input type="checkbox" formControlName="activo" />
+            <span>Estado activo</span>
+        </label>
+    </div>
+
+    <!-- Botones de Acción -->
+    <div class="form-actions">
+        <button type="button" class="btn-secondary" (click)="cancel()">
+            Cancelar
+        </button>
+        <button type="submit" class="btn-primary" [disabled]="statusForm.invalid && statusForm.touched">
+            {{ status ? 'Actualizar' : 'Guardar' }}
+        </button>
+    </div>
+</form>
