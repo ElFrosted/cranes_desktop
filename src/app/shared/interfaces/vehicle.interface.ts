@@ -8,7 +8,7 @@ export interface TipoVehiculo {
 
 export interface Vehicle {
     id: number;
-    tipoVehiculoId: TipoVehiculo;
+    tipoVehiculo: TipoVehiculo;
     placa: string;
     codigo: string;
     activo: boolean;
