@@ -61,7 +61,7 @@
 
 .aseg-otro-container,
 .ike-sub-container {
-    display: none;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
@@ -526,6 +526,11 @@ input[type='date'] {
     &[data-aseg='IKE'].active {
         background: var(--azul);
         border-color: var(--azul);
+        color: #fff;
+    }
+    &[data-aseg='OTRO'].active {
+        background: var(--gris-3);
+        border-color: var(--gris-3);
         color: #fff;
     }
 }

@@ -7,6 +7,8 @@ import { Telefono } from '../../../shared/interfaces/newService.interface';
 import { ApiResponse } from '../../../shared/interfaces/api-response.interface';
 import { Vehicle } from '../../../shared/interfaces/vehicle.interface';
 import { User } from '../../../shared/interfaces/user.interface';
+import { ServiceStatus } from '../../../shared/interfaces/service-status.interface';
+import { Insurance } from '../../../shared/interfaces/insurance-interface';
 
 @Component({
     selector: 'app-dashboard',
@@ -21,6 +23,8 @@ export class NewService implements OnInit {
     telefonosLista = signal<Telefono[]>([]);
     tecnicosLista = signal<User[]>([]);
     gruasLista = signal<Vehicle[]>([]);
+    estadoServicioLista = signal<ServiceStatus[]>([]);
+    aseguradoraLista = signal<Insurance[]>([]);
 
     errorMessage = signal<string | null>(null);
 
@@ -41,14 +45,14 @@ export class NewService implements OnInit {
         tecnicoOtro: [''],
         placaGruaSel: ['', Validators.required],
         placaGruaOtro: [''],
-        estadoServicio: ['EN PROCESO'],
+        estadoServicioSel: ['', Validators.required],
 
         // Ruta
         origen: ['', Validators.required],
         destino: ['', Validators.required],
 
         // Aseguradora / Operador
-        aseguradora: ['IKE', Validators.required],
+        aseguradora: ['', Validators.required],
         aseguradoraOtro: [''],
         operadoraIke: [''],
 
@@ -74,16 +78,29 @@ export class NewService implements OnInit {
 
     ngOnInit(): void {
         this.cargarDatosIniciales();
+
+        this.serviceForm.get('aseguradora')?.valueChanges.subscribe((valor: string) => {
+            this.handleConditionalValidators(valor);
+        });
     }
 
     private cargarDatosIniciales(): void {
         this.errorMessage.set(null);
 
         this.newServiceService.getServiceInitData().subscribe({
-            next: (response) => {
-                this.telefonosLista.set(response.data!.telefonos);
-                this.tecnicosLista.set(response.data!.usuariosTecnicos);
-                this.gruasLista.set(response.data!.gruas);
+            next: (res) => {
+                const aseguradoras = res.data!.aseguradoras;
+
+                if (aseguradoras && aseguradoras.length > 0) {
+                    const primeraAseguradora = aseguradoras[0].nombre;
+                    this.serviceForm.patchValue({ aseguradora: primeraAseguradora });
+                }
+
+                this.telefonosLista.set(res.data!.telefonos);
+                this.tecnicosLista.set(res.data!.usuariosTecnicos);
+                this.gruasLista.set(res.data!.gruas);
+                this.estadoServicioLista.set(res.data!.estadosServicio);
+                this.aseguradoraLista.set(res.data!.aseguradoras);
             },
             error: (err) => {
                 console.error('Error al cargar datos del servicio:', err);
@@ -109,6 +126,32 @@ export class NewService implements OnInit {
         this.serviceForm.patchValue({ aseguradora: aseg });
     }
 
+    private handleConditionalValidators(aseguradora: string): void {
+        const otroCtrl = this.serviceForm.get('aseguradoraOtro');
+        const ikeCtrl = this.serviceForm.get('operadoraIke');
+
+        // Normalizamos el valor a mayúsculas para evitar discrepancias con la API
+        const asegUpper = aseguradora ? aseguradora.toUpperCase().trim() : '';
+
+        if (asegUpper === 'OTRO') {
+            otroCtrl?.setValidators([Validators.required]);
+            ikeCtrl?.clearValidators();
+            ikeCtrl?.setValue('');
+        } else if (asegUpper === 'IKE') {
+            ikeCtrl?.setValidators([Validators.required]);
+            otroCtrl?.clearValidators();
+            otroCtrl?.setValue('');
+        } else {
+            otroCtrl?.clearValidators();
+            otroCtrl?.setValue('');
+            ikeCtrl?.clearValidators();
+            ikeCtrl?.setValue('');
+        }
+
+        otroCtrl?.updateValueAndValidity();
+        ikeCtrl?.updateValueAndValidity();
+    }
+
     guardarServicio(): void {
         if (this.serviceForm.invalid) {
             this.serviceForm.markAllAsTouched();
@@ -125,7 +168,7 @@ export class NewService implements OnInit {
             kmZonaRoja: 0,
             estadoServicio: 'EN PROCESO',
             estadoFactura: 'NO FACTURADO',
-            aseguradora: 'IKE',
+            aseguradora: 'BOLIVAR ',
         });
     }
 }

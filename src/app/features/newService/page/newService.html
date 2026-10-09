@@ -1,19 +1,53 @@
 @if (errorMessage()) {
-    <div class="error">
-        ⚠️ {{ errorMessage() }}
-    </div>
+<div class="error">⚠️ {{ errorMessage() }}</div>
 }
 
 <form [formGroup]="serviceForm" class="app-grid">
     <div class="panel-izquierdo">
         <app-card [title]="'tipo de servicio'" [req]="true" [className]="'card1'">
             <div class="tsv-bar" id="tsv-bar">
-                <div class="tsv-btn" [class.active]="serviceForm.get('tipoServicio')?.value === 'GRUA'" (click)="setTipoServicio('GRUA')">🚛 Grúa</div>
-                <div class="tsv-btn" [class.active]="serviceForm.get('tipoServicio')?.value === 'DESPLAZAMIENTO'" (click)="setTipoServicio('DESPLAZAMIENTO')">🗺️ Desplazamiento</div>
-                <div class="tsv-btn" [class.active]="serviceForm.get('tipoServicio')?.value === 'CARRO_TALLER'" (click)="setTipoServicio('CARRO_TALLER')">🔧 Carro Taller</div>
-                <div class="tsv-btn" [class.active]="serviceForm.get('tipoServicio')?.value === 'CONDUCTOR_ELEGIDO'" (click)="setTipoServicio('CONDUCTOR_ELEGIDO')">🧑‍✈️ Conductor Elegido</div>
-                <div class="tsv-btn" [class.active]="serviceForm.get('tipoServicio')?.value === 'MENSAJERIA'" (click)="setTipoServicio('MENSAJERIA')">📦 Mensajería</div>
-                <div class="tsv-btn" [class.active]="serviceForm.get('tipoServicio')?.value === 'HOGAR'" (click)="setTipoServicio('HOGAR')">🏠 Hogar</div>
+                <div
+                    class="tsv-btn"
+                    [class.active]="serviceForm.get('tipoServicio')?.value === 'GRUA'"
+                    (click)="setTipoServicio('GRUA')"
+                >
+                    🚛 Grúa
+                </div>
+                <div
+                    class="tsv-btn"
+                    [class.active]="serviceForm.get('tipoServicio')?.value === 'DESPLAZAMIENTO'"
+                    (click)="setTipoServicio('DESPLAZAMIENTO')"
+                >
+                    🗺️ Desplazamiento
+                </div>
+                <div
+                    class="tsv-btn"
+                    [class.active]="serviceForm.get('tipoServicio')?.value === 'CARRO_TALLER'"
+                    (click)="setTipoServicio('CARRO_TALLER')"
+                >
+                    🔧 Carro Taller
+                </div>
+                <div
+                    class="tsv-btn"
+                    [class.active]="serviceForm.get('tipoServicio')?.value === 'CONDUCTOR_ELEGIDO'"
+                    (click)="setTipoServicio('CONDUCTOR_ELEGIDO')"
+                >
+                    🧑‍✈️ Conductor Elegido
+                </div>
+                <div
+                    class="tsv-btn"
+                    [class.active]="serviceForm.get('tipoServicio')?.value === 'MENSAJERIA'"
+                    (click)="setTipoServicio('MENSAJERIA')"
+                >
+                    📦 Mensajería
+                </div>
+                <div
+                    class="tsv-btn"
+                    [class.active]="serviceForm.get('tipoServicio')?.value === 'HOGAR'"
+                    (click)="setTipoServicio('HOGAR')"
+                >
+                    🏠 Hogar
+                </div>
             </div>
         </app-card>
 
@@ -23,16 +57,27 @@
             [className]="'card2'"
         >
             <div class="grid-2">
-                <input type="hidden" id="cli-servicio" /> <!--TODO mirar para que es esto-->
+                <input type="hidden" id="cli-servicio" />
+                <!--TODO mirar para que es esto-->
 
                 <div class="field">
                     <label>N° Registro (auto)</label>
-                    <input type="text" formControlName="registroNum" readonly class="input-readonly" placeholder="Auto-generado" />
+                    <input
+                        type="text"
+                        formControlName="registroNum"
+                        readonly
+                        class="input-readonly"
+                        placeholder="Auto-generado"
+                    />
                 </div>
 
                 <div class="field">
                     <label>Nombre Asegurado <span class="req">*</span></label>
-                    <input type="text" formControlName="nombreAsegurado" placeholder="Ej: Sofía Marzola" />
+                    <input
+                        type="text"
+                        formControlName="nombreAsegurado"
+                        placeholder="Ej: Sofía Marzola"
+                    />
                 </div>
 
                 <div class="field">
@@ -46,12 +91,17 @@
                         <select formControlName="telefonoSel">
                             <option value="">— Selecciona —</option>
                             @for (tel of telefonosLista(); track tel.id) {
-                                <option [value]="tel.descripcion">{{ tel.descripcion }}</option>
+                            <option [value]="tel.descripcion">{{ tel.descripcion }}</option>
                             }
                         </select>
                     </div>
                     @if (serviceForm.get('telefonoSel')?.value === 'OTRO (Pegar número)') {
-                        <input type="text" formControlName="telefonoOtro" class="otro-input" placeholder="Pega o digita el teléfono" />
+                    <input
+                        type="text"
+                        formControlName="telefonoOtro"
+                        class="otro-input"
+                        placeholder="Pega o digita el teléfono"
+                    />
                     }
                 </div>
 
@@ -102,12 +152,17 @@
                         <select formControlName="tecnicoSel" id="cli-tecnico-sel">
                             <option value="">— Selecciona conductor —</option>
                             @for (tec of tecnicosLista(); track tec.id) {
-                                <option [value]="tec.id">{{ tec.primerNombre }}</option>
+                            <option [value]="tec.id">{{ tec.primerNombre }}</option>
                             }
                             <option value="OTRO">OTRO</option>
                         </select>
                         @if (serviceForm.get('tecnicoSel')?.value === 'OTRO') {
-                            <input type="text" formControlName="telefonoOtro" class="otro-input" placeholder="Digita el nombre del conductor" />
+                        <input
+                            type="text"
+                            formControlName="telefonoOtro"
+                            class="otro-input"
+                            placeholder="Digita el nombre del conductor"
+                        />
                         }
                     </div>
                 </div>
@@ -118,26 +173,30 @@
                         <select formControlName="placaGruaSel" id="cli-placa-grua-sel">
                             <option value="">— Selecciona placa —</option>
                             @for (grua of gruasLista(); track grua.id) {
-                                <option [value]="grua.placa ">{{ grua.placa }}</option>
+                            <option [value]="grua.id ">{{ grua.placa }}</option>
                             }
                         </select>
                         @if (serviceForm.get('placaGruaSel')?.value === 'OTRO') {
-                            <input type="text" formControlName="placaGruaOtro" class="otro-input" placeholder="Digita la placa manualmente" />
+                        <input
+                            type="text"
+                            formControlName="placaGruaOtro"
+                            class="otro-input"
+                            placeholder="Digita la placa manualmente"
+                        />
                         }
                     </div>
                 </div>
 
                 <div class="field">
                     <label>Estado del Servicio</label>
-                    <select id="cli-estado">
-                        <option value="">— SELECCIONA —</option>
-                        <option value="FINALIZADO">✅ FINALIZADO</option>
-                        <option value="CANCELADO">❌ CANCELADO</option>
-                        <option value="FALLIDO">⚠️ FALLIDO</option>
-                        <option value="EN PROCESO">🔄 EN PROCESO</option>
-                        <option value="PROGRAMADO">📅 PROGRAMADO</option>
-                        <option value="EN CUSTODIA">🔒 EN CUSTODIA</option>
-                    </select>
+                    <div class="custom-select-wrap">
+                        <select formControlName="estadoServicioSel" id="cli-estado">
+                            <option value="">— SELECCIONA —</option>
+                            @for (estServ of estadoServicioLista(); track estServ.id) {
+                            <option [value]="estServ.id">{{estServ.descripcion}}</option>
+                            }
+                        </select>
+                    </div>
                 </div>
             </div>
         </app-card>
@@ -180,28 +239,43 @@
             </div>
         </app-card>
 
-        <app-card [title]="'aseguradora / operador'" [req]="true" [className]="'card4'">
+        <app-card [title]="'Aseguradora / Operador'" [req]="true" [className]="'card4'">
             <div class="aseg-pills">
-                <div class="aseg-pill" data-aseg="BOLIVAR">🟢 Bolívar</div>
-                <div class="aseg-pill" data-aseg="AXA">🔴 AXA</div>
-                <div class="aseg-pill active" data-aseg="IKE">🔵 IKE</div>
-                <div class="aseg-pill" data-aseg="OTRO">⚪ OTRO</div>
+                <!-- Puedes renderizar las pills dinámicamente desde tu Signal -->
+                @for (aseg of aseguradoraLista(); track aseg.id) {
+                <div
+                    class="aseg-pill"
+                    [attr.data-aseg]="aseg.nombre"
+                    [class.active]="serviceForm.get('aseguradora')?.value?.toUpperCase() === aseg.nombre.toUpperCase()"
+                    (click)="setAseguradora(aseg.nombre.toUpperCase())"
+                >
+                    @switch (aseg.nombre) { @case ('BOLIVAR') { 🟢 Bolívar } @case ('AXA') { 🔴 AXA
+                    } @case ('IKE') { 🔵 IKE } @case ('OTRO') { ⚪ OTRO } @default { {{ aseg.nombre
+                    }} } }
+                </div>
+                }
             </div>
 
+            <!-- Sub-formulario para aseguradora OTRO -->
+            @if (serviceForm.get('aseguradora')?.value?.toUpperCase() === 'OTRO') {
             <div id="aseg-otro-wrap" class="aseg-otro-container">
                 <input
                     type="text"
-                    id="aseg-otro-txt"
+                    class="form-control"
+                    formControlName="aseguradoraOtro"
                     placeholder="Digita el nombre de la aseguradora..."
                 />
             </div>
+            }
 
+            <!-- Sub-formulario para operadora IKE -->
+            @if (serviceForm.get('aseguradora')?.value?.toUpperCase() === 'IKE') {
             <div id="ike-sub-wrap" class="ike-sub-container">
-                <label class="ike-sub-container__label"
-                    >Operadora IKE <span class="req">*</span></label
-                >
+                <label class="ike-sub-container__label">
+                    Operadora IKE <span class="req">*</span>
+                </label>
                 <div class="custom-select-wrap">
-                    <select id="ike-sub-sel">
+                    <select class="form-select" formControlName="operadoraIke">
                         <option value="">— Selecciona operadora —</option>
                         <option value="HDI">HDI</option>
                         <option value="HDI BRANDEADA">HDI BRANDEADA</option>
@@ -211,6 +285,8 @@
                     </select>
                 </div>
             </div>
+            }
+
             <div class="field-hint">💡 La aseguradora determina las tarifas base y recargos.</div>
         </app-card>
 
