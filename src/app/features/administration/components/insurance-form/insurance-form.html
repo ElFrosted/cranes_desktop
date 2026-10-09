@@ -1,0 +1,49 @@
+<form [formGroup]="insuranceForm" (ngSubmit)="onSubmit()" class="form-container">
+    <!-- Campo Nombre -->
+    <div class="form-group">
+        <label for="nombre">Nombre <span class="required">*</span></label>
+        <input
+            id="nombre"
+            type="text"
+            formControlName="nombre"
+            placeholder="Ej: 001"
+            [class.is-invalid]="insuranceForm.get('nombre')?.invalid && insuranceForm.get('nombre')?.touched"
+        />
+        @if (insuranceForm.get('codigo')?.invalid && insuranceForm.get('codigo')?.touched) {
+            <span class="error-text">El nombre es obligatorio.</span>
+        }
+    </div>
+
+    <!-- Campo Codigo -->
+    <div class="form-group">
+        <label for="codigo">Código <span class="required">*</span></label>
+        <input 
+            id="codigo" 
+            type="text" 
+            formControlName="codigo" 
+            placeholder="Ej: 001"
+            [class.is-invalid]="insuranceForm.get('codigo')?.invalid && insuranceForm.get('codigo')?.touched"
+        />
+        @if (insuranceForm.get('codigo')?.invalid && insuranceForm.get('codigo')?.touched) {
+            <span class="error-text">El código es obligatorio.</span>
+        }
+    </div>
+
+    <!-- Campo Activo -->
+    <div class="form-group checkbox-group">
+        <label class="checkbox-label">
+            <input type="checkbox" formControlName="activo" />
+            <span>Estado activo</span>
+        </label>
+    </div>
+
+    <!-- Botones de Acción -->
+    <div class="form-actions">
+        <button type="button" class="btn-secondary" (click)="cancel()">
+            Cancelar
+        </button>
+        <button type="submit" class="btn-primary" [disabled]="insuranceForm.invalid && insuranceForm.touched">
+            {{ insurance ? 'Actualizar' : 'Guardar' }}
+        </button>
+    </div>
+</form>

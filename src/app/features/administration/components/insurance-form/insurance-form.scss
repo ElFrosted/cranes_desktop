@@ -1,0 +1,140 @@
+/* ==========================================================================
+   STATUS FORM STYLES
+   ========================================================================== */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+
+    label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #374151;
+
+        .required {
+            color: #ef4444;
+        }
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 0.65rem 0.85rem;
+        font-size: 0.925rem;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        background-color: #ffffff;
+        color: #111827;
+        box-sizing: border-box;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+        &:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        &::placeholder {
+            color: #9ca3af;
+        }
+
+        &.is-invalid {
+            border-color: #ef4444;
+
+            &:focus {
+                box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+            }
+        }
+    }
+
+    /* Transformación visual para código (mayúsculas) */
+    input[formControlName="codigo"] {
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        font-weight: 600;
+    }
+
+    .error-text {
+        font-size: 0.775rem;
+        color: #ef4444;
+        margin-top: 0.1rem;
+    }
+}
+
+/* Formato específico para Checkbox */
+.checkbox-group {
+    margin-top: 0.25rem;
+
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        user-select: none;
+
+        input[type="checkbox"] {
+            width: 1.1rem;
+            height: 1.1rem;
+            accent-color: #2563eb;
+            cursor: pointer;
+        }
+
+        span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #374151;
+        }
+    }
+}
+
+/* Acciones del formulario */
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+
+    button {
+        padding: 0.6rem 1.25rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.15s ease;
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+
+    .btn-secondary {
+        background-color: #f3f4f6;
+        color: #374151;
+        border: 1px solid #d1d5db;
+
+        &:hover:not(:disabled) {
+            background-color: #e5e7eb;
+            color: #111827;
+        }
+    }
+
+    .btn-primary {
+        background-color: #2563eb;
+        color: #ffffff;
+        border: none;
+
+        &:hover:not(:disabled) {
+            background-color: #1d4ed8;
+        }
+    }
+}
