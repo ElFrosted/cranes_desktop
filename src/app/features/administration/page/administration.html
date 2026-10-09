@@ -31,7 +31,7 @@
                         <small>Doc: {{ user.documento }}</small>
                     </div>
                     <div class="item-card__actions">
-                        <button (click)="openUserModal(user)">✏️</button>
+                        <button (click)="openUserModal(user.id)">✏️</button>
                         <button (click)="deleteUser(user.id)">🗑️</button>
                     </div>
                 </div>
@@ -68,15 +68,55 @@
                     <div class="item-card__avatar">🚛</div>
                     <div class="item-card__info">
                         <strong>{{ vehicle.placa }}</strong>
-                        <small>{{ vehicle.tipoVehiculoId.nombre }} - Cod: {{ vehicle.codigo }}</small>
+                        <small>
+                            {{ vehicle.tipoVehiculo.nombre }} - Cod: {{ vehicle.codigo }}</small
+                        >
                     </div>
                     <div class="item-card__actions">
-                        <button (click)="openVehicleModal(vehicle)">✏️</button>
+                        <button (click)="openVehicleModal(vehicle.id)">✏️</button>
                         <button (click)="deleteVehicle(vehicle.id)">🗑️</button>
                     </div>
                 </div>
                 } @empty {
                 <p class="empty-msg">No hay vehículos registrados.</p>
+                }
+            </div>
+            }
+        </section>
+
+        <section class="admin-card">
+            <header class="admin-card__header">
+                <div class="admin-card__title-group">
+                    <button class="btn-toggle" (click)="toggleSection('insurances')">
+                        {{ isStatusesOpen() ? '' : ''}}
+                    </button>
+                    <h2>Aseguradoras</h2>
+                </div>
+
+                <input
+                    type="text"
+                    class="search-input"
+                    placeholder="Buscar aseguradoras..."
+                    [formControl]="insuranceSearchCtrl"
+                />
+
+                <button class="btn-primary" (click)="openInsuranceModal()">Crear</button>
+            </header>
+
+            @if (isInsurancesOpen()) {
+            <div class="cards-grid">
+                @for (insurance of filteredInsurances(); track insurance.id) {
+                <div class="item-card">
+                    <div class="item-card__avatar">🏷️</div>
+                    <div class="item-card__info">
+                        <strong>{{ insurance.nombre }}</strong>
+                        <small>Código: {{ insurance.codigo }}</small>
+                    </div>
+                    <div class="item-card__actions">
+                        <button (click)="openInsuranceModal(insurance.id)">✏️</button>
+                        <button (click)="deleteInsurance(insurance.id)">🗑️</button>
+                    </div>
+                </div>
                 }
             </div>
             }
@@ -111,7 +151,7 @@
                         <small>Código: {{ status.codigo }}</small>
                     </div>
                     <div class="item-card__actions">
-                        <button (click)="openStatusModal(status)">✏️</button>
+                        <button (click)="openStatusModal(status.id)">✏️</button>
                         <button (click)="deleteStatus(status.id)">🗑️</button>
                     </div>
                 </div>
@@ -123,18 +163,69 @@
 </div>
 
 <!-- POPUPS / MODALES DE CREACIÓN Y EDICIÓN -->
-<app-modal 
-    [isOpen]="isUserModalOpen()" 
+<app-modal
+    [isOpen]="isUserModalOpen()"
     [title]="selectedUser() ? 'Editar Usuario' : 'Crear Usuario'"
     (closed)="closeUserModal()"
 >
-    <!-- Aquí va el formulario reactivo de usuario -->
+    @if (isModalLoading()) {
+    <div class="modal-spinner"><span class="nf">󰔟</span> Cargando datos del usuario...</div>
+    } @else {
+    <app-user-form
+        [user]="selectedUser()"
+        [tiposDocumento]="userParams().tiposDocumento"
+        [roles]="userParams().roles"
+        (onSave)="saveUser($event)"
+        (onCancel)="closeUserModal()"
+    />
+    }
 </app-modal>
 
-<app-modal 
-    [isOpen]="isVehicleModalOpen()" 
+<app-modal
+    [isOpen]="isVehicleModalOpen()"
     [title]="selectedVehicle() ? 'Editar Vehículo' : 'Crear Vehículo'"
     (closed)="closeVehicleModal()"
 >
-    <!-- Aquí va el formulario reactivo de vehículo -->
+    @if (isModalLoading()) {
+    <div class="modal-spinner"><span class="nf">󰔟</span> Cargando datos del usuario...</div>
+    } @else {
+    <app-vehicle-form
+        [vehicle]="selectedVehicle()"
+        [tiposVehiculo]="vehicleParams().tiposVehiculo"
+        (onSave)="saveVehicle($event)"
+        (onCancel)="closeVehicleModal()"
+    />
+    }
+</app-modal>
+
+<app-modal
+    [isOpen]="isInsuranceModalOpen()"
+    [title]="selectedInsurance() ? 'Editar Aseguradora' : 'Crear Aseguradora'"
+    (closed)="closeInsuranceModal()"
+>
+    @if (isModalLoading()) {
+    <div class="modal-spinner"><span class="nf">󰔟</span> Cargando datos de la aseguradora...</div>
+    } @else {
+    <app-insurance-form
+        [insurance]="selectedInsurance()"
+        (onSave)="saveInsurance($event)"
+        (onCancel)="closeInsuranceModal()"
+    />
+    }
+</app-modal>
+
+<app-modal
+    [isOpen]="isStatusModalOpen()"
+    [title]="selectedStatus() ? 'Editar Estado' : 'Crear Estado'"
+    (closed)="closeStatusModal()"
+>
+    @if (isModalLoading()) {
+    <div class="modal-spinner"><span class="nf">󰔟</span> Cargando datos del usuario...</div>
+    } @else {
+    <app-status-form
+        [status]="selectedStatus()"
+        (onSave)="saveStatus($event)"
+        (onCancel)="closeStatusModal()"
+    />
+    }
 </app-modal>
