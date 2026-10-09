@@ -7,7 +7,7 @@ interface NavItem {
     label: string;
     route: string;
     icon: string;
-    count?: number; // Para tus contadores dinámicos futuros
+    count?: number; // Para contadores dinámicos
 }
 @Component({
     selector: 'app-navbar',
